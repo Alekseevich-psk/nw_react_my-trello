@@ -1,0 +1,20 @@
+/* W3C standard
+   сейчас только для Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #24292e71 #3e444b71;
+}
+
+/* для Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+    height: 8px;
+    width: 6px;
+}
+*::-webkit-scrollbar-track {
+    background: none;
+}
+*::-webkit-scrollbar-thumb {
+    background-color: #24292e71;
+    border-radius: 3px;
+    border: 1px solid transparent;
+}

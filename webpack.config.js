@@ -2,6 +2,7 @@ const path = require("path");
 const fs = require("fs");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
@@ -67,6 +68,21 @@ const config = {
                         },
                     },
                     {
+                        loader: "postcss-loader",
+                        options: {
+                            postcssOptions: {
+                                plugins: [
+                                    [
+                                        autoprefixer,
+                                        {
+                                            browsers: ['last 3 versions', '> 1%']
+                                        },
+                                    ],
+                                ],
+                            },
+                        },
+                    },
+                    {
                         loader: "sass-loader",
                         options: {
                             implementation: require("sass"),
@@ -102,7 +118,6 @@ const config = {
                 ],
             },
         ],
-
     },
     plugins: [
         new MiniCssExtractPlugin({
@@ -110,10 +125,10 @@ const config = {
         }),
         new CopyPlugin({
             patterns: [
-                {
-                    from: "src/fonts",
-                    to: "fonts",
-                },
+                // {
+                //     from: "src/fonts",
+                //     to: "fonts",
+                // },
                 {
                     from: "src/favicon",
                     to: "favicon",
@@ -122,10 +137,10 @@ const config = {
                     from: "src/img",
                     to: "img",
                 },
-                {
-                    from: "src/uploads",
-                    to: "uploads",
-                },
+                // {
+                //     from: "src/uploads",
+                //     to: "uploads",
+                // },
             ],
         }),
     ].concat(htmlPlugins),

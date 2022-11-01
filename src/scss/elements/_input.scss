@@ -1,0 +1,14 @@
+.input {
+    display: none;
+
+    &.is_active {
+        display: block;
+    }
+    
+    input {
+        padding: 6px 12px;
+        font-size: 16px;
+        font-family: 'Noto Sans', sans-serif;
+        border-radius: $borderRadius;
+    }
+}

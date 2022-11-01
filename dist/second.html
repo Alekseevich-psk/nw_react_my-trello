@@ -1,28 +1,168 @@
-
-<header class="header">
-    <div class="container">
-        <div class="header__title">Task manager</div>
-        <div class="header__profile">
-            <div class="header__ico">
-                <img src="./img/profile.svg" alt="">
-            </div>
-            <div class="header__auth">
-                <button class="header__btn header__btn--profile">Профиль</button>
-                <button class="header__btn header__btn--out">Выход</button>
-            </div>
-        </div>
-    </div>
-</header>
-
-<div class="container">Вторая страница.</div>
-
-<footer class="footer">
-    <div class="container">
-        footer
-    </div>
-</footer>
-
-<!-- <script src="js/bundle.js"></script> -->
-</body>
-
-</html>
+Html Webpack Plugin:
+<pre>
+  Error: Child compilation failed:
+  Module not found: Error: Can't resolve 'D:\dev_projects\nw_react_my-trello\src\html\views\second.html' in 'D:\dev_projects\nw_react_my-trello'
+  ModuleNotFoundError: Module not found: Error: Can't resolve 'D:\dev_projects\nw_react_my-trello\src\html\views\second.html' in 'D:\dev_projects\nw_react_my-trello'
+      at D:\dev_projects\nw_react_my-trello\node_modules\webpack\lib\Compilation.js:2016:28
+      at D:\dev_projects\nw_react_my-trello\node_modules\webpack\lib\NormalModuleFactory.js:798:13
+      at eval (eval at create (D:\dev_projects\nw_react_my-trello\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:10:1)
+      at D:\dev_projects\nw_react_my-trello\node_modules\webpack\lib\NormalModuleFactory.js:270:22
+      at eval (eval at create (D:\dev_projects\nw_react_my-trello\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:9:1)
+      at D:\dev_projects\nw_react_my-trello\node_modules\webpack\lib\NormalModuleFactory.js:434:22
+      at D:\dev_projects\nw_react_my-trello\node_modules\webpack\lib\NormalModuleFactory.js:116:11
+      at D:\dev_projects\nw_react_my-trello\node_modules\webpack\lib\NormalModuleFactory.js:670:25
+      at D:\dev_projects\nw_react_my-trello\node_modules\webpack\lib\NormalModuleFactory.js:855:8
+      at D:\dev_projects\nw_react_my-trello\node_modules\webpack\lib\NormalModuleFactory.js:975:5
+      at D:\dev_projects\nw_react_my-trello\node_modules\neo-async\async.js:6883:13
+      at D:\dev_projects\nw_react_my-trello\node_modules\webpack\lib\NormalModuleFactory.js:958:45
+      at finishWithoutResolve (D:\dev_projects\nw_react_my-trello\node_modules\enhanced-resolve\lib\Resolver.js:312:11)
+      at D:\dev_projects\nw_react_my-trello\node_modules\enhanced-resolve\lib\Resolver.js:386:15
+      at D:\dev_projects\nw_react_my-trello\node_modules\enhanced-resolve\lib\Resolver.js:435:5
+      at eval (eval at create (D:\dev_projects\nw_react_my-trello\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:16:1)
+      at D:\dev_projects\nw_react_my-trello\node_modules\enhanced-resolve\lib\Resolver.js:435:5
+      at eval (eval at create (D:\dev_projects\nw_react_my-trello\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:27:1)
+      at D:\dev_projects\nw_react_my-trello\node_modules\enhanced-resolve\lib\DescriptionFilePlugin.js:87:43
+      at D:\dev_projects\nw_react_my-trello\node_modules\enhanced-resolve\lib\Resolver.js:435:5
+      at eval (eval at create (D:\dev_projects\nw_react_my-trello\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:15:1)
+      at D:\dev_projects\nw_react_my-trello\node_modules\enhanced-resolve\lib\Resolver.js:435:5
+      at eval (eval at create (D:\dev_projects\nw_react_my-trello\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:16:1)
+      at D:\dev_projects\nw_react_my-trello\node_modules\enhanced-resolve\lib\Resolver.js:435:5
+      at eval (eval at create (D:\dev_projects\nw_react_my-trello\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:16:1)
+      at D:\dev_projects\nw_react_my-trello\node_modules\enhanced-resolve\lib\Resolver.js:435:5
+      at eval (eval at create (D:\dev_projects\nw_react_my-trello\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:27:1)
+      at D:\dev_projects\nw_react_my-trello\node_modules\enhanced-resolve\lib\DescriptionFilePlugin.js:87:43
+      at D:\dev_projects\nw_react_my-trello\node_modules\enhanced-resolve\lib\Resolver.js:435:5
+      at eval (eval at create (D:\dev_projects\nw_react_my-trello\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:16:1)
+      at D:\dev_projects\nw_react_my-trello\node_modules\enhanced-resolve\lib\Resolver.js:435:5
+      at eval (eval at create (D:\dev_projects\nw_react_my-trello\node_modules\tapable\lib\HookCodeFactory.js:33:10), <anonymous>:15:1)
+      at D:\dev_projects\nw_react_my-trello\node_modules\enhanced-resolve\lib\DirectoryExistsPlugin.js:41:15
+      at processTicksAndRejections (internal/process/task_queues.js:79:21)
+  
+  - Compilation.js:2016 
+    [nw_react_my-trello]/[webpack]/lib/Compilation.js:2016:28
+  
+  - NormalModuleFactory.js:798 
+    [nw_react_my-trello]/[webpack]/lib/NormalModuleFactory.js:798:13
+  
+  
+  - NormalModuleFactory.js:270 
+    [nw_react_my-trello]/[webpack]/lib/NormalModuleFactory.js:270:22
+  
+  
+  - NormalModuleFactory.js:434 
+    [nw_react_my-trello]/[webpack]/lib/NormalModuleFactory.js:434:22
+  
+  - NormalModuleFactory.js:116 
+    [nw_react_my-trello]/[webpack]/lib/NormalModuleFactory.js:116:11
+  
+  - NormalModuleFactory.js:670 
+    [nw_react_my-trello]/[webpack]/lib/NormalModuleFactory.js:670:25
+  
+  - NormalModuleFactory.js:855 
+    [nw_react_my-trello]/[webpack]/lib/NormalModuleFactory.js:855:8
+  
+  - NormalModuleFactory.js:975 
+    [nw_react_my-trello]/[webpack]/lib/NormalModuleFactory.js:975:5
+  
+  - async.js:6883 
+    [nw_react_my-trello]/[neo-async]/async.js:6883:13
+  
+  - NormalModuleFactory.js:958 
+    [nw_react_my-trello]/[webpack]/lib/NormalModuleFactory.js:958:45
+  
+  - Resolver.js:312 finishWithoutResolve
+    [nw_react_my-trello]/[enhanced-resolve]/lib/Resolver.js:312:11
+  
+  - Resolver.js:386 
+    [nw_react_my-trello]/[enhanced-resolve]/lib/Resolver.js:386:15
+  
+  - Resolver.js:435 
+    [nw_react_my-trello]/[enhanced-resolve]/lib/Resolver.js:435:5
+  
+  
+  - Resolver.js:435 
+    [nw_react_my-trello]/[enhanced-resolve]/lib/Resolver.js:435:5
+  
+  
+  - DescriptionFilePlugin.js:87 
+    [nw_react_my-trello]/[enhanced-resolve]/lib/DescriptionFilePlugin.js:87:43
+  
+  - Resolver.js:435 
+    [nw_react_my-trello]/[enhanced-resolve]/lib/Resolver.js:435:5
+  
+  
+  - Resolver.js:435 
+    [nw_react_my-trello]/[enhanced-resolve]/lib/Resolver.js:435:5
+  
+  
+  - Resolver.js:435 
+    [nw_react_my-trello]/[enhanced-resolve]/lib/Resolver.js:435:5
+  
+  
+  - Resolver.js:435 
+    [nw_react_my-trello]/[enhanced-resolve]/lib/Resolver.js:435:5
+  
+  
+  - DescriptionFilePlugin.js:87 
+    [nw_react_my-trello]/[enhanced-resolve]/lib/DescriptionFilePlugin.js:87:43
+  
+  - Resolver.js:435 
+    [nw_react_my-trello]/[enhanced-resolve]/lib/Resolver.js:435:5
+  
+  
+  - Resolver.js:435 
+    [nw_react_my-trello]/[enhanced-resolve]/lib/Resolver.js:435:5
+  
+  
+  - DirectoryExistsPlugin.js:41 
+    [nw_react_my-trello]/[enhanced-resolve]/lib/DirectoryExistsPlugin.js:41:15
+  
+  - task_queues.js:79 processTicksAndRejections
+    internal/process/task_queues.js:79:21
+  
+  - child-compiler.js:169 
+    [nw_react_my-trello]/[html-webpack-plugin]/lib/child-compiler.js:169:18
+  
+  - Compiler.js:551 finalCallback
+    [nw_react_my-trello]/[webpack]/lib/Compiler.js:551:5
+  
+  - Compiler.js:577 
+    [nw_react_my-trello]/[webpack]/lib/Compiler.js:577:11
+  
+  - Compiler.js:1196 
+    [nw_react_my-trello]/[webpack]/lib/Compiler.js:1196:17
+  
+  
+  - Hook.js:18 Hook.CALL_ASYNC_DELEGATE [as _callAsync]
+    [nw_react_my-trello]/[tapable]/lib/Hook.js:18:14
+  
+  - Compiler.js:1192 
+    [nw_react_my-trello]/[webpack]/lib/Compiler.js:1192:33
+  
+  - Compilation.js:2787 finalCallback
+    [nw_react_my-trello]/[webpack]/lib/Compilation.js:2787:11
+  
+  - Compilation.js:3092 
+    [nw_react_my-trello]/[webpack]/lib/Compilation.js:3092:11
+  
+  
+  - Hook.js:18 Hook.CALL_ASYNC_DELEGATE [as _callAsync]
+    [nw_react_my-trello]/[tapable]/lib/Hook.js:18:14
+  
+  - Compilation.js:3085 
+    [nw_react_my-trello]/[webpack]/lib/Compilation.js:3085:38
+  
+  
+  - Compilation.js:521 
+    [nw_react_my-trello]/[webpack]/lib/Compilation.js:521:10
+  
+  - SourceMapDevToolPlugin.js:549 
+    [nw_react_my-trello]/[webpack]/lib/SourceMapDevToolPlugin.js:549:10
+  
+  - async.js:2830 
+    [nw_react_my-trello]/[neo-async]/async.js:2830:7
+  
+  - async.js:2857 Object.each
+    [nw_react_my-trello]/[neo-async]/async.js:2857:9
+  
+</pre>

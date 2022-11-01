@@ -1,0 +1,45 @@
+.task {
+    border-radius: $borderRadius;
+    color: $textColor;
+    background-color: $whiteColor;
+    margin: 0 6px 12px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    &__body {
+        padding: $padding;
+    }
+
+    &__sub-title {
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    &__preview {
+        position: relative;
+        padding-right: 30px;
+
+        &:hover {
+           .task__btn-edit-task {
+            display: block;
+           } 
+        }
+    }
+
+    &__btn-edit-task {
+        display: none;
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        right: 4px;
+        transform: translateY(-50%);
+        background-color: rgb(80, 63, 63);
+        width: 20px;
+        height: 20px;
+        border: 1px solid gray;
+        mask-size: 100% 100%;
+        mask-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewBox='0 0 24 24'%3e%3cpath stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m16.474 5.408 2.118 2.117m-.756-3.982L12.109 9.27a2.118 2.118 0 0 0-.58 1.082L11 13l2.648-.53c.41-.082.786-.283 1.082-.579l5.727-5.727a1.854 1.854 0 0 0-2.621-2.621v0Z'/%3e%3cpath stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 15v3a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h3'/%3e%3c/svg%3e ");
+    }
+}

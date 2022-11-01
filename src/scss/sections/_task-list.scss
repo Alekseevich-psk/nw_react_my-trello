@@ -1,5 +1,108 @@
 .task-list {
-    padding-top: 20px;
+    position: relative;
+    padding: 90px 0;
+    height: 100vh;
+    overflow-y: auto;
     background-color: $bgMain;
-    height: calc( 100vh - 120px );
+
+    &__title {
+        font-size: 14px;
+        font-weight: 700;
+        color: $textColor;
+        padding: 6px 8px 6px;
+
+        &.hide {
+            display: none;
+        }
+    }
+
+    &__wrapper {
+        display: flex;
+        align-items: flex-start;
+        overflow-x: auto;
+        padding-bottom: 40px;
+        // border: 1px solid rgb(255, 255, 255);
+    }
+
+    &__inner {
+        margin-right: 20px;
+        position: relative;
+        border-radius: $borderRadius;
+        padding-bottom: 12px;
+        background-color: rgb(170, 165, 165);
+        min-width: 280px;
+        max-width: 280px;
+
+        &:hover {
+            .task-list__add-task {
+                opacity: 1;
+                padding: $padding;
+                height: auto;
+                visibility: visible;
+            }
+        }
+    }
+
+    &__track {
+        margin-bottom: 12px;
+        max-height: 60vh;
+        overflow-y: auto;
+    }
+
+    &__header {
+        z-index: 2;
+        width: 100%;
+        border-radius: $borderRadius;
+        padding: $padding;
+        background-color: rgb(236, 228, 228);
+        margin-bottom: 12px;
+        color: $textColor;
+    }
+
+    &__add-task {
+        transition: $transition;
+        display: flex;
+        opacity: 0;
+        align-items: center;
+        visibility: hidden;
+        height: 0;
+        padding: 0;
+
+        &-btn {
+            cursor: pointer;
+            color: $whiteColor;
+            border: none;
+            background-color: transparent;
+        }
+
+        &-ico {
+            width: 14px;
+            height: 14px;
+            background-color: #fff;
+            mask-size: 100% 100%;
+            mask-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' viewBox='0 0 20 20'%3e%3cpath fill='%23000' d='M10.5 2.75a.75.75 0 1 0-1.5 0V9H2.75a.75.75 0 0 0 0 1.5H9v6.25a.75.75 0 1 0 1.5 0V10.5h6.25a.75.75 0 1 0 0-1.5H10.5V2.75Z'/%3e%3c/svg%3e ");
+        }
+    }
+
+    &__btn-add-wrap-task {
+        cursor: pointer;
+        position: fixed;
+        bottom: 72px;
+        right: 30px;
+        z-index: 10;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        transition: $transition;
+
+        &:hover {
+            background-color: #fff;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
 }

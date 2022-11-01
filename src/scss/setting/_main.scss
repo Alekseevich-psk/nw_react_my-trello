@@ -12,9 +12,29 @@ body {
     font-size: 16px;
     background-color: rgb(248, 248, 248);
 
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
     &.overflow{
         overflow-y: hidden;
     }
+}
+
+.header, .footer {
+    position: fixed;
+    width: 100%;
+    z-index: 2;
+}
+
+.header {
+    top: 0;
+    left: 0;
+}
+
+.footer {
+    bottom: 0;
+    left: 0;
 }
 
 * {
