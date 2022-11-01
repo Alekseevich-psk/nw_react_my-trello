@@ -1,0 +1,17 @@
+<%= _.template(require('./../includes/head.html').default)() %>
+<%= _.template(require('./../includes/header.html').default)() %>
+
+<section class="task-list">
+    <div class="container">
+       <div class="task-list__wrapper">
+        <div class="task-list__inner">
+            <div class="task-list__item">
+                <div class="task-list__title">Title</div>
+                <button class="task-list__btn-edit-task">edit</button>
+            </div>
+        </div>
+       </div>
+    </div>
+</section>
+
+<%= _.template(require('./../includes/footer.html').default)() %>
