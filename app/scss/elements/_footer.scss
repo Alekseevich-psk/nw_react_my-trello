@@ -6,7 +6,24 @@
     .container {
         height: 100%;
         display: flex;
-        justify-content: start;
+        justify-content: space-between;
         align-items: center;
     }
+
+    &__inner {
+        &:last-child {
+            font-size: 12px;
+            line-height: 120%;
+            text-align: right;
+        }
+    }
+
+    &__date {
+
+        &-time {
+            font-size: 14px;
+        }
+    }
+
+
 }
