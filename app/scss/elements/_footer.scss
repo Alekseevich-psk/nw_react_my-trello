@@ -2,4 +2,11 @@
     background-color: $bgSub;
     height: 60px;
     border-top: 1px solid $border;
+
+    .container {
+        height: 100%;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+    }
 }

@@ -27,6 +27,18 @@
         position: relative;
     }
 
+    &__title {
+        display: flex;
+        align-items: center;
+
+        img {
+            width: 20px;
+            height: auto;
+            margin-right: 12px;
+            object-fit: contain;
+        }
+    }
+
     &__auth {
         border-radius: $borderRadius;
         background-color: $whiteColor;
