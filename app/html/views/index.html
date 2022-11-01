@@ -25,7 +25,10 @@
                                         <button class="task__btn-edit-task">edit</button>
                                     </div>
                                     <div class="task__inner">
-
+                                        <div class="task__date">10.10.2022</div>
+                                        <div class="task__text-area">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, minima.
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -45,3 +48,5 @@
         </section>
 
         <%= _.template(require('./../includes/footer.html').default)() %>
+            <%= _.template(require('./../includes/popup.html').default)() %>
+                <%= _.template(require('./../includes/scripts.html').default)() %>

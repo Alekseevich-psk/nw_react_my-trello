@@ -28,6 +28,10 @@
         }
     }
 
+    &__inner {
+        display: none;
+    }
+
     &__btn-edit-task {
         display: none;
         cursor: pointer;
