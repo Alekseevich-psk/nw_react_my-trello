@@ -22,10 +22,10 @@ function generateHtmlPlugins(templateDir) {
     });
 }
 
-const htmlPlugins = generateHtmlPlugins("src/html/views");
+const htmlPlugins = generateHtmlPlugins("app/html/views");
 
 const config = {
-    entry: ["./src/js/index.js", "./src/scss/style.scss"],
+    entry: ["./app/js/index.js", "./app/scss/style.scss"],
     output: {
         path: path.resolve(__dirname, "dist"),
         filename: "js/bundle.js",
@@ -54,7 +54,7 @@ const config = {
         rules: [
             {
                 test: /\.(sass|scss)$/,
-                include: path.resolve(__dirname, "src/scss"),
+                include: path.resolve(__dirname, "app/scss"),
                 use: [
                     {
                         loader: MiniCssExtractPlugin.loader,
@@ -93,12 +93,12 @@ const config = {
             },
             {
                 test: /\.html$/,
-                include: path.resolve(__dirname, "src/html/includes"),
+                include: path.resolve(__dirname, "app/html/includes"),
                 use: ["raw-loader"],
             },
             {
                 test: /\.(jsx|js)$/,
-                include: path.resolve(__dirname, "src/js"),
+                include: path.resolve(__dirname, "app/js"),
                 exclude: /node_modules/,
                 use: [
                     {
@@ -126,19 +126,19 @@ const config = {
         new CopyPlugin({
             patterns: [
                 // {
-                //     from: "src/fonts",
+                //     from: "app/fonts",
                 //     to: "fonts",
                 // },
                 {
-                    from: "src/favicon",
+                    from: "app/favicon",
                     to: "favicon",
                 },
                 {
-                    from: "src/img",
+                    from: "app/img",
                     to: "img",
                 },
                 // {
-                //     from: "src/uploads",
+                //     from: "app/uploads",
                 //     to: "uploads",
                 // },
             ],

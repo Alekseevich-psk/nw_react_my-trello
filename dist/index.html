@@ -1,82 +1,63 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
+
+<head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700;900&display=swap"
+        rel="stylesheet" />
     <link rel="shortcut icon" href="favicon/favicon.ico" />
     <link rel="stylesheet" href="css/style.bundle.css" />
-
     <title>test</title>
-  </head>
-  <body>
+</head>
 
+<body>
     <header class="header">
-    <div class="container">
-        <div class="header__title">Task manager</div>
-        <div class="header__profile">
-            <div class="header__ico">
-                <img src="./img/profile.svg" alt="">
-            </div>
-            <div class="header__auth">
-                <button class="header__btn header__btn--profile">Профиль</button>
-                <button class="header__btn header__btn--out">Выход</button>
+        <div class="container">
+            <div class="header__title">Task manager</div>
+            <div class="header__profile">
+                <div class="header__ico"><img src="./img/profile.svg" alt="" /></div>
+                <div class="header__auth">
+                    <button class="header__btn header__btn--profile">Профиль</button>
+                    <button class="header__btn header__btn--out">Выход</button>
+                </div>
             </div>
         </div>
-    </div>
-</header>
-
-        <section class="task-list">
-            <div class="container">
-                <div class="task-list__wrapper">
-                    <div class="task-list__inner">
-                        <div class="task-list__header">
-                            <div class="task-list__title">В работу</div>
-                            <div class="task-list__input input">
-                                <input type="text">
-                            </div>
-                        </div>
-
-                        <div class="task-list__track">
-
-                            <div class="task-list__task task">
-                                <div class="task__body">
-                                    <div class="task__preview">
-                                        <div class="task__sub-title">Таск 1</div>
-                                        <div class="task__input input">
-                                            <input type="text">
-                                        </div>
-                                        <button class="task__btn-edit-task">edit</button>
-                                    </div>
-                                    <div class="task__inner">
-
-                                    </div>
+    </header>
+    <section class="task-list">
+        <div class="container">
+            <div class="task-list__wrapper">
+                <div class="task-list__inner">
+                    <div class="task-list__header">
+                        <div class="task-list__title">В работу</div>
+                        <div class="task-list__input input"><input /></div>
+                    </div>
+                    <div class="task-list__track">
+                        <div class="task-list__task task">
+                            <div class="task__body">
+                                <div class="task__preview">
+                                    <div class="task__sub-title">Таск 1</div>
+                                    <div class="task__input input"><input /></div>
+                                    <button class="task__btn-edit-task">edit</button>
                                 </div>
+                                <div class="task__inner"></div>
                             </div>
-
-                        </div>
-
-                        <div class="task-list__add-task">
-                            <div class="task-list__add-task-ico"></div>
-                            <button class="task-list__add-task-btn">Добавить задачу</button>
                         </div>
                     </div>
-                </div>
-                <div class="task-list__btn-add-wrap-task">
-                    <img src="./img/btn-add.svg" alt="">
+                    <div class="task-list__add-task">
+                        <div class="task-list__add-task-ico"></div>
+                        <button class="task-list__add-task-btn">Добавить задачу</button>
+                    </div>
                 </div>
             </div>
-        </section>
-
-        <footer class="footer">
-    <div class="container">
-        footer
-    </div>
-</footer>
-
-<!-- <script src="js/bundle.js"></script> -->
+            <div class="task-list__btn-add-wrap-task"><img src="./img/btn-add.svg" alt="" /></div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container">footer</div>
+    </footer>
 </body>
 
 </html>
