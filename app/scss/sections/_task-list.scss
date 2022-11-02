@@ -59,6 +59,10 @@
         color: $textColor;
     }
 
+    &__add-task-wrap {
+        padding: $padding;
+    }
+
     &__add-task {
         transition: $transition;
         display: flex;

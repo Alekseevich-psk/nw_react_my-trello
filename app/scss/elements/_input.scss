@@ -1,11 +1,19 @@
 .input {
-    display: none;
+    width: 100%;
+    transition: $transition;
+    opacity: 0;
+    visibility: hidden;
+    height: 0;
 
-    &.is_active {
-        display: block;
+    &.show {
+        opacity: 1;
+        visibility: visible;
+        height: auto;
     }
     
     input {
+        color: $textColor;
+        width: 100%;
         padding: 6px 12px;
         font-size: 16px;
         font-family: 'Noto Sans', sans-serif;

@@ -8,8 +8,8 @@ class TaskList extends React.Component {
         super(props);
     }
 
-    componentDidMount() {
-
+    addTaskForList(value) {
+        console.log(value);
     }
 
     render() {
@@ -18,7 +18,8 @@ class TaskList extends React.Component {
                 <div className="container">
                     <div className="task-list__wrapper">
                         {this.props.list.taskList.map((el, i) =>
-                            <TaskListInner el={el} key={i}/>
+                        {console.log(i)}
+                            <TaskListInner addTask={this.addTaskForList} el={el} key={i}/>
                         )}
                     </div>
                     <AddTaskBoard />

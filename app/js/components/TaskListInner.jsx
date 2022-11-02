@@ -1,14 +1,21 @@
 import React from 'react';
 import TaskItem from './TaskItem.jsx';
+import AddTask from './AddTask.jsx';
 
 class TaskListInner extends React.Component {
 
     constructor(props) {
         super(props);
 
+        console.log(props);
+
         this.state = {
             title: Object.keys(props.el),
         }
+    }
+
+    addTaskForList(value) {
+        this.props.addTask(value);
     }
 
     render() {
@@ -27,10 +34,7 @@ class TaskListInner extends React.Component {
                     )}
                 </div>
 
-                <div className="task-list__add-task">
-                    <div className="task-list__add-task-ico"></div>
-                    <button className="task-list__add-task-btn">Добавить задачу</button>
-                </div>
+                <AddTask addTask={this.addTaskForList} />
             </div>
         )
     }

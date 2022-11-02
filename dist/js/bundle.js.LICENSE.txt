@@ -1,14 +1,8 @@
-/*! ./AddTaskBoard.jsx */
-
 /*! ./Footer.jsx */
 
 /*! ./Header.jsx */
 
-/*! ./TaskItem.jsx */
-
 /*! ./TaskList.jsx */
-
-/*! ./TaskListInner.jsx */
 
 /*! ./cjs/react-dom.development.js */
 
@@ -51,10 +45,6 @@
   \**************************************/
 
 /*!****************************************!*\
-  !*** ./app/js/components/TaskItem.jsx ***!
-  \****************************************/
-
-/*!****************************************!*\
   !*** ./app/js/components/TaskList.jsx ***!
   \****************************************/
 
@@ -70,14 +60,6 @@
   !*** ./node_modules/react-dom/client.js ***!
   \******************************************/
 
-/*!********************************************!*\
-  !*** ./app/js/components/AddTaskBoard.jsx ***!
-  \********************************************/
-
-/*!*********************************************!*\
-  !*** ./app/js/components/TaskListInner.jsx ***!
-  \*********************************************/
-
 /*!*****************************************************!*\
   !*** ./node_modules/react/cjs/react.development.js ***!
   \*****************************************************/
@@ -89,6 +71,26 @@
 /*!*************************************************************!*\
   !*** ./node_modules/scheduler/cjs/scheduler.development.js ***!
   \*************************************************************/
+
+/**
+ * @license React
+ * react-dom.development.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/**
+ * @license React
+ * scheduler.development.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 
 /**
  * Checks if an event is supported in the current execution environment.
