@@ -12,8 +12,8 @@
     <title>My-trello</title>
   </head>
   <body>
-
-    <header class="header">
+    <div id="app">
+        <header class="header">
     <div class="container">
         <div class="header__title">
             <img src="./img/task-list-ico.svg" alt="">
@@ -30,52 +30,53 @@
     </div>
 </header>
 
-        <section class="task-list">
-            <div class="container">
-                <div class="task-list__wrapper">
-                    <div class="task-list__inner">
-                        <div class="task-list__header">
-                            <div class="task-list__title">В работу</div>
-                            <div class="task-list__input input">
-                                <input type="text">
-                            </div>
-                        </div>
-
-                        <div class="task-list__track">
-
-                            <div class="task-list__task task">
-                                <div class="task__body">
-                                    <div class="task__preview">
-                                        <div class="task__sub-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
-                                        <div class="task__input input">
-                                            <input type="text">
-                                        </div>
-                                        <button class="task__btn-edit-task">edit</button>
-                                    </div>
-                                    <div class="task__inner">
-                                        <div class="task__date">10.10.2022</div>
-                                        <div class="task__text-area">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, minima.
-                                        </div>
-                                    </div>
+            <section class="task-list">
+                <div class="container">
+                    <div class="task-list__wrapper">
+                        <div class="task-list__inner">
+                            <div class="task-list__header">
+                                <div class="task-list__title">В работу</div>
+                                <div class="task-list__input input">
+                                    <input type="text">
                                 </div>
                             </div>
 
-                        </div>
+                            <div class="task-list__track">
 
-                        <div class="task-list__add-task">
-                            <div class="task-list__add-task-ico"></div>
-                            <button class="task-list__add-task-btn">Добавить задачу</button>
+                                <div class="task-list__task task">
+                                    <div class="task__body">
+                                        <div class="task__preview">
+                                            <div class="task__sub-title">Lorem ipsum dolor sit amet, consectetur
+                                                adipisicing elit.</div>
+                                            <div class="task__input input">
+                                                <input type="text">
+                                            </div>
+                                            <button class="task__btn-edit-task">edit</button>
+                                        </div>
+                                        <div class="task__inner">
+                                            <div class="task__date">10.10.2022</div>
+                                            <div class="task__text-area">
+                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, minima.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="task-list__add-task">
+                                <div class="task-list__add-task-ico"></div>
+                                <button class="task-list__add-task-btn">Добавить задачу</button>
+                            </div>
                         </div>
                     </div>
+                    <div class="task-list__btn-add-wrap-task">
+                        <img src="./img/btn-add.svg" alt="">
+                    </div>
                 </div>
-                <div class="task-list__btn-add-wrap-task">
-                    <img src="./img/btn-add.svg" alt="">
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <footer class="footer">
+            <footer class="footer">
     <div class="container">
         <div class="footer__inner">
             Всего задач: <span></span>
@@ -86,7 +87,7 @@
         </div>
     </div>
 </footer>
-            <div class="popup">
+                <div class="popup">
     <div class="popup__overlay">
         <div class="popup__body">
             <div class="popup__close">
@@ -106,7 +107,8 @@
         </div>
     </div>
 </div>
-                <!-- <script src="js/bundle.js"></script> -->
+                    <script src="js/bundle.js"></script>
 </body>
 
 </html>
+    </div>
