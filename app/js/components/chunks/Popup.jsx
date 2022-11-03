@@ -43,7 +43,7 @@ class Popup extends React.Component {
     render() {
         if (this.props.task) {
             return (
-                <div className={"popup" + " " + (this.props.show ? "is-active" : "")}>
+                <div className={"popup " + (this.props.show ? "is-active" : "")}>
                     <div className="popup__overlay">
                         <div className="popup__body">
                             <div className="popup__close" onClick={this.onHandlerClick.bind(this)}>
@@ -56,7 +56,7 @@ class Popup extends React.Component {
                                         className="popup__title"
                                         onClick={this.onDbClickHandler.bind(this)}>{this.props.task.title}
                                     </div>
-                                    <div className={"popup__input input" + " " + (this.state.showInput ? "show" : "hidden")}>
+                                    <div className={"popup__input input " + (this.state.showInput ? "show" : "hidden")}>
                                         <Input
                                             show={this.getInputValue.bind(this)}
                                             defaultValue={this.props.task.title}
