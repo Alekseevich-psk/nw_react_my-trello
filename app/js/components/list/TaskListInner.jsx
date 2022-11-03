@@ -1,12 +1,12 @@
 import React from 'react';
 import TaskItem from './../elements/TaskItem.jsx';
 import AddTask from './../elements/AddTask.jsx';
+import TaskListHeader from './../elements/TaskListHeader.jsx';
 
 class TaskListInner extends React.Component {
 
     constructor(props) {
         super(props);
-
         this.addTaskForList = this.addTaskForList.bind(this);
     }
 
@@ -17,12 +17,10 @@ class TaskListInner extends React.Component {
     render() {
         return (
             <div className="task-list__inner">
-                <div className="task-list__header">
-                    <div className="task-list__title">{this.props.category.title}</div>
-                    <div className="task-list__input input">
-                        <input type="text" name="work" />
-                    </div>
-                </div>
+
+                <TaskListHeader
+                editCategoryTitle={this.props.editTitleCat} 
+                category={this.props.category} />
 
                 <div className="task-list__track">
                     {this.props.taskList.map((el, index) =>

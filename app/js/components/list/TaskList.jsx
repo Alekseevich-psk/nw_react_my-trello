@@ -29,7 +29,12 @@ class TaskList extends React.Component {
                 <div className="container">
                     <div className="task-list__wrapper">
                         {this.props.catList.map((el, index) =>
-                            <TaskListInner category={el} taskList={this.getListTaskForCat(index + 1)} key={index} addTask={this.addTaskForList} />
+                            <TaskListInner 
+                            category={el} 
+                            taskList={this.getListTaskForCat(index + 1)} 
+                            key={index} 
+                            editTitleCat={this.props.editCategoryTitle}
+                            addTask={this.addTaskForList} />
                         )}
                     </div>
                     <AddTaskBoard addTaskBoard={this.addTaskBoard}/>

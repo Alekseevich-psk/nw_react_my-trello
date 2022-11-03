@@ -10,6 +10,7 @@ class App extends React.Component {
 
         this.addTaskForList = this.addTaskForList.bind(this);
         this.addTaskBoard = this.addTaskBoard.bind(this);
+        this.editCategoryTitle = this.editCategoryTitle.bind(this);
 
         this.state = {
             taskList: [],
@@ -17,6 +18,48 @@ class App extends React.Component {
             isLoaded: false,
         }
 
+    }
+
+    addTaskBoard() {
+        this.setState({
+            catList: [...this.state.catList, {
+                id: this.state.catList.length + 1,
+                title: 'New board'
+            }]
+        })
+    }
+
+    editCategoryTitle(value, catId) {
+        // this.state.catList.filter((el) => el.id === catId)[0].title = value;
+        const res = this.state.catList.find((el, i) => el.id === catId)
+        console.log(res.title = value);
+    }
+
+    addTaskForList(value, catId) {
+        this.setState({
+            taskList: [...this.state.taskList, {
+                id: this.state.taskList.length,
+                title: value,
+                catId: catId
+            }]
+        })
+    }
+
+    render() {
+        if (this.state.isLoaded) {
+            return (
+                <>
+                    <Header />
+                    <TaskList
+                        taskList={this.state.taskList}
+                        editCategoryTitle={this.editCategoryTitle}
+                        catList={this.state.catList}
+                        addTask={this.addTaskForList}
+                        addTaskBoard={this.addTaskBoard} />
+                    <Footer />
+                </>
+            )
+        }
     }
 
     componentDidMount() {
@@ -71,46 +114,11 @@ class App extends React.Component {
                 },
                 {
                     id: 3,
-                    title: 'Завершонные'
+                    title: 'Завершённые'
                 }
             ],
             isLoaded: true
         })
-    }
-
-    addTaskBoard() {
-        this.setState({
-            catList: [...this.state.catList, {
-                id: this.state.catList.length + 1,
-                title: 'New board'
-            }]
-        })
-    }
-
-    addTaskForList(value, catId) {
-        this.setState({
-            taskList: [...this.state.taskList, {
-                id: this.state.taskList.length,
-                title: value,
-                catId: catId
-            }]
-        })
-    }
-
-    render() {
-        if (this.state.isLoaded) {
-            return (
-                <>
-                    <Header />
-                    <TaskList
-                        taskList={this.state.taskList}
-                        catList={this.state.catList}
-                        addTask={this.addTaskForList}
-                        addTaskBoard={this.addTaskBoard} />
-                    <Footer />
-                </>
-            )
-        }
     }
 }
 
