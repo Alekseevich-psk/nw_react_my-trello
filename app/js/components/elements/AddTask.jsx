@@ -21,7 +21,11 @@ class AddTask extends React.Component {
             this.setState({
                 showInput: false
             })
-            this.props.addTask(event.target.value);
+
+            this.props.addTask({
+                title: event.target.value,
+                date: new Date().toLocaleDateString()
+            });
             event.target.value = '';
         }
     }

@@ -10,8 +10,9 @@ class TaskListInner extends React.Component {
         this.addTaskForList = this.addTaskForList.bind(this);
     }
 
-    addTaskForList(value) {
-        this.props.addTask(value, this.props.category.id);
+    addTaskForList(obj) {
+        obj.catId = this.props.category.id;
+        this.props.addTask(obj);
     }
 
     render() {

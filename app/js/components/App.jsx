@@ -66,12 +66,14 @@ class App extends React.Component {
         this.state.catList.find((el) => el.id === catId).title = value;
     }
 
-    addTaskForList(value, catId) {
+    addTaskForList(task) {
+        console.log(task);
         this.setState({
             taskList: [...this.state.taskList, {
                 id: this.state.taskList.length + 1,
-                title: value,
-                catId: catId
+                title: task.title,
+                catId: task.catId,
+                date: task.date
             }]
         })
     }

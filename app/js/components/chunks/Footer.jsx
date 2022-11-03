@@ -19,8 +19,8 @@ class Footer extends React.Component {
     updateDate() {
         setInterval(() => {
             this.setState({
-                day: new Date().toLocaleTimeString().slice(0, -3),
-                time: new Date().toLocaleDateString()
+                time: new Date().toLocaleTimeString().slice(0, -3),
+                day: new Date().toLocaleDateString()
             })
         }, 1000);
     }
