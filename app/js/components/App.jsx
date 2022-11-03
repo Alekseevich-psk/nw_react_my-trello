@@ -44,21 +44,24 @@ class App extends React.Component {
     }
 
     editTask(value, taskId) {
-        if(value === null) {
+        if (value === null) {
             this.setState({
                 showPopup: true,
                 editTask: this.state.taskList.find((el) => el.id === taskId)
             })
             return;
-        } 
+        }
 
         this.state.taskList.find((el) => el.id === taskId).title = value;
-        
+
     }
 
     editTaskPopup(task) {
+        console.log(task);
         const objTask = this.state.taskList.find((el) => el.id === task.id);
-        objTask.title = task.title;
+
+        if (task.title) objTask.title = task.title;
+        if (task.text) objTask.title = task.text;
     }
 
     editCategory(value, catId) {
@@ -88,11 +91,11 @@ class App extends React.Component {
                         editTask={this.editTask}
                         addTaskBoard={this.addTaskBoard} />
                     <Footer />
-                    <Popup 
-                    show={this.state.showPopup} 
-                    closePopup={this.closePopup}
-                    updateTask={this.editTaskPopup}
-                    task={this.state.editTask}/>
+                    <Popup
+                        show={this.state.showPopup}
+                        closePopup={this.closePopup}
+                        updateTask={this.editTaskPopup}
+                        task={this.state.editTask} />
                 </>
             )
         }
@@ -105,37 +108,43 @@ class App extends React.Component {
                     id: 1,
                     title: 'Title 1',
                     text: 'text content',
-                    catId: 1
+                    catId: 1,
+                    date: null
                 },
                 {
                     id: 2,
                     title: 'Title 2',
                     text: 'text content',
-                    catId: 1
+                    catId: 1,
+                    date: null
                 },
                 {
                     id: 3,
                     title: 'Title 1',
                     text: 'text content',
-                    catId: 2
+                    catId: 2,
+                    date: null
                 },
                 {
                     id: 4,
                     title: 'Title 2',
                     text: 'text content',
-                    catId: 2
+                    catId: 2,
+                    date: null
                 },
                 {
                     id: 5,
                     title: 'Title 1',
                     text: 'text content',
-                    catId: 3
+                    catId: 3,
+                    date: null
                 },
                 {
                     id: 6,
                     title: 'Title 2',
                     text: 'text content',
-                    catId: 1
+                    catId: 1,
+                    date: null
                 },
 
             ],

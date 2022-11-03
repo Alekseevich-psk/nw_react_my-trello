@@ -1,4 +1,5 @@
 import React from 'react';
+import TaskContent from './../elements/TaskContent.jsx';
 
 class Popup extends React.Component {
 
@@ -9,24 +10,21 @@ class Popup extends React.Component {
         this.handleKeyPress = this.handleKeyPress.bind(this);
 
         this.state = {
-            title: '',
-            showInput: false,
-            showTextArea: false,
+            showInput: false
         }
 
     }
 
     onHandlerClick() {
-        this.props.closePopup()
+        this.props.closePopup();
     }
 
     handleKeyPress(event) {
-
         if (event.charCode == 13) {
             this.setState({
                 showInput: false
             })
-            
+
             this.updateTask(event);
         }
     }
@@ -52,16 +50,9 @@ class Popup extends React.Component {
         if (event.detail === 1) {
             this.timer = setTimeout(this.props.onClick, 200)
         } else if (event.detail === 2) {
-
-            if (event.target.classList.contains('popup__title')) {
-                this.setState({
-                    showInput: true
-                })
-            } else {
-                this.setState({
-                    showTextArea: true
-                })
-            }
+            this.setState({
+                showInput: true
+            })
         }
     }
 
@@ -76,38 +67,23 @@ class Popup extends React.Component {
                             </div>
                             <div className="popup__inner">
                                 <div className="popup__header">
-
-
                                     <div
                                         style={{ display: this.state.showInput ? 'none' : 'block' }}
                                         className="popup__title"
                                         onClick={this.onDbClickHandler}>{this.props.task.title}
                                     </div>
-
-
                                     <div className={"popup__input input" + " " + (this.state.showInput ? "show" : "hidden")}>
                                         <input type="text"
                                             onMouseLeave={this.hadlerHover.bind(this)}
                                             onKeyPress={this.handleKeyPress}
                                             defaultValue={this.props.task.title} />
                                     </div>
-
-
-
-                                    <div className="popup__date">10.10.2022</div>
+                                    <div className="popup__date">{this.props.task.date}</div>
                                 </div>
-                                <div className="popup__wrapper">
-                                    <div
-                                        style={{ display: this.state.showTextArea ? 'none' : 'block' }}
-                                        className="popup__text"
-                                        onClick={this.onDbClickHandler}>
-                                        {this.props.task.text}
-                                    </div>
-                                    {/* <div className={"popup__text-area-wrap " + (this.state.showTextArea ? "show" : "hidden")}>
-                                        <textarea className="popup__text-area"  ></textarea>
-                                        <button className='popup__btn' >Сохранить</button>
-                                    </div> */}
-                                </div>
+                                <TaskContent 
+                                    task={this.props.task}
+                                    updateTask={this.props.updateTask}
+                                />
                                 <div className="popup__footer"></div>
                             </div>
                         </div>
