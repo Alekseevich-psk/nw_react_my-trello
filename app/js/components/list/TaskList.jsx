@@ -6,21 +6,10 @@ class TaskList extends React.Component {
 
     constructor(props) {
         super(props);
-        this.getListTaskForCat = this.getListTaskForCat.bind(this);
-        this.addTaskForList = this.addTaskForList.bind(this);
-        this.addTaskBoard = this.addTaskBoard.bind(this);
     }
 
     getListTaskForCat(catId) {
         return this.props.taskList.filter((el) => el.catId == catId)
-    }
-
-    addTaskForList(value, catId) {
-        this.props.addTask(value, catId);
-    }
-
-    addTaskBoard() {
-        this.props.addTaskBoard();
     }
 
     render() {
@@ -29,15 +18,16 @@ class TaskList extends React.Component {
                 <div className="container">
                     <div className="task-list__wrapper">
                         {this.props.catList.map((el, index) =>
-                            <TaskListInner 
-                            category={el} 
-                            taskList={this.getListTaskForCat(index + 1)} 
-                            key={index} 
-                            editTitleCat={this.props.editCategoryTitle}
-                            addTask={this.addTaskForList} />
+                            <TaskListInner
+                                category={el}
+                                taskList={this.getListTaskForCat(index + 1)}
+                                key={index}
+                                editTitleCat={this.props.editCategoryTitle}
+                                addTask={this.props.addTask}
+                            />
                         )}
                     </div>
-                    <AddTaskBoard addTaskBoard={this.addTaskBoard}/>
+                    <AddTaskBoard addTaskBoard={this.props.addTaskBoard} />
                 </div>
             </section>
         )

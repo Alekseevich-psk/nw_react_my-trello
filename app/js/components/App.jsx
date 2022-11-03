@@ -30,9 +30,7 @@ class App extends React.Component {
     }
 
     editCategoryTitle(value, catId) {
-        // this.state.catList.filter((el) => el.id === catId)[0].title = value;
-        const res = this.state.catList.find((el, i) => el.id === catId)
-        console.log(res.title = value);
+        this.state.catList.find((el) => el.id === catId).title = value;
     }
 
     addTaskForList(value, catId) {
