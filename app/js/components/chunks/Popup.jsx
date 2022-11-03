@@ -1,13 +1,11 @@
 import React from 'react';
 import TaskContent from './../elements/TaskContent.jsx';
+import Input from './../elements/Input.jsx';
 
 class Popup extends React.Component {
 
     constructor(props) {
         super(props);
-
-        this.onDbClickHandler = this.onDbClickHandler.bind(this);
-        this.handleKeyPress = this.handleKeyPress.bind(this);
 
         this.state = {
             showInput: false
@@ -15,33 +13,19 @@ class Popup extends React.Component {
 
     }
 
-    onHandlerClick() {
-        this.props.closePopup();
-    }
-
-    handleKeyPress(event) {
-        if (event.charCode == 13) {
-            this.setState({
-                showInput: false
-            })
-
-            this.updateTask(event);
-        }
-    }
-
-    hadlerHover(event) {
+    getInputValue(showInput, valueInput) {
         this.setState({
-            showInput: false
+            showInput: showInput
         })
 
-        this.updateTask(event);
-    }
-
-    updateTask(event) {
         this.props.updateTask({
             id: this.props.task.id,
-            title: event.target.value,
+            title: valueInput
         })
+    }
+
+    onHandlerClick() {
+        this.props.closePopup();
     }
 
     onDbClickHandler(event) {
@@ -70,17 +54,17 @@ class Popup extends React.Component {
                                     <div
                                         style={{ display: this.state.showInput ? 'none' : 'block' }}
                                         className="popup__title"
-                                        onClick={this.onDbClickHandler}>{this.props.task.title}
+                                        onClick={this.onDbClickHandler.bind(this)}>{this.props.task.title}
                                     </div>
                                     <div className={"popup__input input" + " " + (this.state.showInput ? "show" : "hidden")}>
-                                        <input type="text"
-                                            onMouseLeave={this.hadlerHover.bind(this)}
-                                            onKeyPress={this.handleKeyPress}
-                                            defaultValue={this.props.task.title} />
+                                        <Input
+                                            show={this.getInputValue.bind(this)}
+                                            defaultValue={this.props.task.title}
+                                        />
                                     </div>
                                     <div className="popup__date">{this.props.task.date}</div>
                                 </div>
-                                <TaskContent 
+                                <TaskContent
                                     task={this.props.task}
                                     updateTask={this.props.updateTask}
                                 />
