@@ -14,6 +14,7 @@ class App extends React.Component {
         this.editCategory = this.editCategory.bind(this);
         this.closePopup = this.closePopup.bind(this);
         this.editTask = this.editTask.bind(this);
+        this.editTaskPopup = this.editTaskPopup.bind(this);
 
         this.state = {
             taskList: [],
@@ -55,6 +56,11 @@ class App extends React.Component {
         
     }
 
+    editTaskPopup(task) {
+        const objTask = this.state.taskList.find((el) => el.id === task.id);
+        objTask.title = task.title;
+    }
+
     editCategory(value, catId) {
         this.state.catList.find((el) => el.id === catId).title = value;
     }
@@ -85,6 +91,7 @@ class App extends React.Component {
                     <Popup 
                     show={this.state.showPopup} 
                     closePopup={this.closePopup}
+                    updateTask={this.editTaskPopup}
                     task={this.state.editTask}/>
                 </>
             )

@@ -92,7 +92,7 @@
         </div>
     </div>
 </footer>
-                <div class="popup">
+                <div class="popup is-active">
     <div class="popup__overlay">
         <div class="popup__body">
             <div class="popup__close">
@@ -101,11 +101,17 @@
             <div class="popup__inner">
                 <div class="popup__header">
                     <div class="popup__title">Title</div>
+                    <div class="popup__input input">
+                        <input type="text">
+                    </div>
                     <div class="popup__date">10.10.2022</div>
                 </div>
                 <div class="popup__wrapper">
                     <div class="popup__text">Ввести данные..</div>
-                    <div class="popup__text-area"></div>
+                    <div class="popup__text-area-wrap">
+                        <textarea class="popup__text-area"></textarea>
+                        <button class="popup__btn">Сохранить</button>
+                    </div>
                 </div>
                 <div class="popup__footer"></div>
             </div>

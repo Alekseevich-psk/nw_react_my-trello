@@ -19,7 +19,6 @@ class Input extends React.Component {
     }
 
     setValueInput() {
-        console.log(this.state.valueInput);
         this.props.valueInput(this.state.valueInput)
     }
 
