@@ -9,12 +9,12 @@ class App extends React.Component {
         super(props);
 
         this.addTaskForList = this.addTaskForList.bind(this);
+        this.addTaskBoard = this.addTaskBoard.bind(this);
 
         this.state = {
             taskList: [],
             catList: [],
             isLoaded: false,
-            propsTest: ''
         }
 
     }
@@ -78,6 +78,15 @@ class App extends React.Component {
         })
     }
 
+    addTaskBoard() {
+        this.setState({
+            catList: [...this.state.catList, {
+                id: this.state.catList.length + 1,
+                title: 'New board'
+            }]
+        })
+    }
+
     addTaskForList(value, catId) {
         this.setState({
             taskList: [...this.state.taskList, {
@@ -93,7 +102,11 @@ class App extends React.Component {
             return (
                 <>
                     <Header />
-                    <TaskList taskList={this.state.taskList} catList={this.state.catList} addTask={this.addTaskForList}/>
+                    <TaskList
+                        taskList={this.state.taskList}
+                        catList={this.state.catList}
+                        addTask={this.addTaskForList}
+                        addTaskBoard={this.addTaskBoard} />
                     <Footer />
                 </>
             )

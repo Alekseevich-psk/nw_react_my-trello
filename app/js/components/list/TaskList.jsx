@@ -8,6 +8,7 @@ class TaskList extends React.Component {
         super(props);
         this.getListTaskForCat = this.getListTaskForCat.bind(this);
         this.addTaskForList = this.addTaskForList.bind(this);
+        this.addTaskBoard = this.addTaskBoard.bind(this);
     }
 
     getListTaskForCat(catId) {
@@ -16,6 +17,10 @@ class TaskList extends React.Component {
 
     addTaskForList(value, catId) {
         this.props.addTask(value, catId);
+    }
+
+    addTaskBoard() {
+        this.props.addTaskBoard();
     }
 
     render() {
@@ -27,7 +32,7 @@ class TaskList extends React.Component {
                             <TaskListInner category={el} taskList={this.getListTaskForCat(index + 1)} key={index} addTask={this.addTaskForList} />
                         )}
                     </div>
-                    <AddTaskBoard />
+                    <AddTaskBoard addTaskBoard={this.addTaskBoard}/>
                 </div>
             </section>
         )
