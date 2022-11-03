@@ -4,6 +4,7 @@
   "description": "HTML template",
   "main": "src/index.js",
   "scripts": {
+    "server": "webpack-dev-server",
     "dev": "webpack --mode development",
     "watch": "webpack --mode development --watch",
     "start": "webpack serve --no-client-overlay-warnings",

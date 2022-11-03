@@ -1,17 +1,16 @@
 
 import React from 'react';
-import Header from './Header.jsx';
-import Footer from './Footer.jsx';
-import TaskList from './TaskList.jsx';
+import Header from './chunks/Header.jsx';
+import Footer from './chunks/Footer.jsx';
+import TaskList from './list/TaskList.jsx';
 
 class App extends React.Component {
     constructor(props) {
         super(props);
 
-        this.editTaskList = this.editTaskList.bind(this);
-
         this.state = {
             taskList: [],
+            catList: [],
             isLoaded: false,
             propsTest: ''
         }
@@ -21,41 +20,59 @@ class App extends React.Component {
         this.setState({
             taskList: [
                 {
-                    'В работу': [
-                        {
-                            id: 1,
-                            title: 'Title 1',
-                            text: 'text content'
-                        },
-                        {
-                            id: 2,
-                            title: 'Title 2',
-                            text: 'text content'
-                        },
-                    ],
+                    id: 1,
+                    title: 'Title 1',
+                    text: 'text content',
+                    catId: 0
                 },
                 {
-                    'В работе': [
-                        {
-                            id: 3,
-                            title: 'Title 3',
-                            text: 'text content'
-                        },
-                        {
-                            id: 4,
-                            title: 'Title 4',
-                            text: 'text content'
-                        },
-                    ],
-                }
+                    id: 2,
+                    title: 'Title 2',
+                    text: 'text content',
+                    catId: 1
+                },
+                {
+                    id: 1,
+                    title: 'Title 1',
+                    text: 'text content',
+                    catId: 2
+                },
+                {
+                    id: 2,
+                    title: 'Title 2',
+                    text: 'text content',
+                    catId: 2
+                },
+                {
+                    id: 1,
+                    title: 'Title 1',
+                    text: 'text content',
+                    catId: 3
+                },
+                {
+                    id: 2,
+                    title: 'Title 2',
+                    text: 'text content',
+                    catId: 1
+                },
 
+            ],
+            catList: [
+                {
+                    id: 1,
+                    title: 'В работе'
+                },
+                {
+                    id: 2,
+                    title: 'В работу'
+                },
+                {
+                    id: 3,
+                    title: 'Завершонные'
+                }
             ],
             isLoaded: true
         })
-    }
-
-    editTaskList(data) {
-        console.log(data);
     }
 
     render() {
@@ -63,7 +80,7 @@ class App extends React.Component {
             return (
                 <>
                     <Header />
-                    <TaskList list={{ editTaskListFoo: this.editTaskList, taskList: this.state.taskList }} />
+                    <TaskList taskList={this.state.taskList} catList={this.state.catList}/>
                     <Footer />
                 </>
             )

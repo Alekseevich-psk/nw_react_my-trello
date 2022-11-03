@@ -4,11 +4,12 @@ class TaskItem extends React.Component {
 
     constructor(props) {
         super(props);
-        
+
+        console.log(props.task);
+
         this.state = {
-            id: props.el.id,
-            title: props.el.title,
-            content: props.el.text
+            title: props.task.title,
+            content: props.task.text
         }
     }
 
@@ -26,7 +27,7 @@ class TaskItem extends React.Component {
                     <div className="task__inner">
                         <div className="task__date">10.10.2022</div>
                         <div className="task__text-area">
-                        {this.state.content}
+                            {this.state.title}
                         </div>
                     </div>
                 </div>

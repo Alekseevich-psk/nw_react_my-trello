@@ -4,7 +4,7 @@ class AddTask extends React.Component {
 
     constructor(props) {
         super(props);
-        
+
         this.state = {
             showInput: false
         }
@@ -17,14 +17,14 @@ class AddTask extends React.Component {
     }
 
     handleKeyPress(event) {
-        if(event.charCode==13) {
+        if (event.charCode == 13) {
             this.setState({
                 showInput: false
             })
             this.props.addTask(event.target.value);
             event.target.value = '';
         }
-      }
+    }
 
     hadlerHover() {
         this.setState({

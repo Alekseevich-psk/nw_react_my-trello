@@ -1,15 +1,17 @@
 import React from 'react';
 import TaskListInner from './TaskListInner.jsx';
-import AddTaskBoard from './AddTaskBoard.jsx';
+import AddTaskBoard from './../elements/AddTaskBoard.jsx';
 
 class TaskList extends React.Component {
 
     constructor(props) {
         super(props);
+        this.getListTaskForCat = this.getListTaskForCat.bind(this);
+        this.getListTaskForCat();
     }
 
-    addTaskForList(value) {
-        console.log(value);
+    getListTaskForCat(catId) {
+        return this.props.taskList.filter((el) => el.catId == catId)
     }
 
     render() {
@@ -17,9 +19,8 @@ class TaskList extends React.Component {
             <section className="task-list" >
                 <div className="container">
                     <div className="task-list__wrapper">
-                        {this.props.list.taskList.map((el, i) =>
-                        {console.log(i)}
-                            <TaskListInner addTask={this.addTaskForList} el={el} key={i}/>
+                        {this.props.catList.map((el, index) =>
+                            <TaskListInner category={el} taskList={this.getListTaskForCat(index)} key={index} />
                         )}
                     </div>
                     <AddTaskBoard />

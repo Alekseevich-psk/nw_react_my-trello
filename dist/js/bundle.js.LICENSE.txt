@@ -1,25 +1,3 @@
-/*! ./Footer.jsx */
-
-/*! ./Header.jsx */
-
-/*! ./TaskList.jsx */
-
-/*! ./cjs/react-dom.development.js */
-
-/*! ./cjs/react.development.js */
-
-/*! ./cjs/scheduler.development.js */
-
-/*! ./components/App.jsx */
-
-/*! react */
-
-/*! react-dom */
-
-/*! react-dom/client */
-
-/*! scheduler */
-
 /*!*************************!*\
   !*** ./app/js/index.js ***!
   \*************************/
@@ -36,18 +14,6 @@
   !*** ./node_modules/react/index.js ***!
   \*************************************/
 
-/*!**************************************!*\
-  !*** ./app/js/components/Footer.jsx ***!
-  \**************************************/
-
-/*!**************************************!*\
-  !*** ./app/js/components/Header.jsx ***!
-  \**************************************/
-
-/*!****************************************!*\
-  !*** ./app/js/components/TaskList.jsx ***!
-  \****************************************/
-
 /*!*****************************************!*\
   !*** ./node_modules/react-dom/index.js ***!
   \*****************************************/
@@ -60,6 +26,34 @@
   !*** ./node_modules/react-dom/client.js ***!
   \******************************************/
 
+/*!*********************************************!*\
+  !*** ./app/js/components/chunks/Footer.jsx ***!
+  \*********************************************/
+
+/*!*********************************************!*\
+  !*** ./app/js/components/chunks/Header.jsx ***!
+  \*********************************************/
+
+/*!*********************************************!*\
+  !*** ./app/js/components/list/TaskList.jsx ***!
+  \*********************************************/
+
+/*!************************************************!*\
+  !*** ./app/js/components/elements/AddTask.jsx ***!
+  \************************************************/
+
+/*!*************************************************!*\
+  !*** ./app/js/components/elements/TaskItem.jsx ***!
+  \*************************************************/
+
+/*!**************************************************!*\
+  !*** ./app/js/components/list/TaskListInner.jsx ***!
+  \**************************************************/
+
+/*!*****************************************************!*\
+  !*** ./app/js/components/elements/AddTaskBoard.jsx ***!
+  \*****************************************************/
+
 /*!*****************************************************!*\
   !*** ./node_modules/react/cjs/react.development.js ***!
   \*****************************************************/
@@ -71,37 +65,3 @@
 /*!*************************************************************!*\
   !*** ./node_modules/scheduler/cjs/scheduler.development.js ***!
   \*************************************************************/
-
-/**
- * @license React
- * react-dom.development.js
- *
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-/**
- * @license React
- * scheduler.development.js
- *
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-/**
- * Checks if an event is supported in the current execution environment.
- *
- * NOTE: This will not work correctly for non-generic events such as `change`,
- * `reset`, `load`, `error`, and `select`.
- *
- * Borrows from Modernizr.
- *
- * @param {string} eventNameSuffix Event name, e.g. "click".
- * @return {boolean} True if the event is supported.
- * @internal
- * @license Modernizr 3.0.0pre (Custom Build) | MIT
- */

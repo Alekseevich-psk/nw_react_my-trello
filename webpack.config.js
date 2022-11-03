@@ -26,12 +26,29 @@ const htmlPlugins = generateHtmlPlugins("app/html/views");
 
 const config = {
     entry: ["./app/js/index.js", "./app/scss/style.scss"],
+    // entry: "./app/js/index.js",
     output: {
         path: path.resolve(__dirname, "dist"),
         filename: "js/bundle.js",
     },
-    devtool: "source-map",
+    // devtool: "source-map",
     mode: "production",
+    devServer: {
+        static: {
+            directory: path.join(__dirname, "dist/js"),
+        },
+        compress: false,
+        // hot: false,
+        client: {
+            progress: true,
+            overlay: {
+                errors: false,
+                warnings: false,
+            },
+        },
+        compress: true,
+        port: 9000,
+    },
     optimization: {
         minimize: true,
         minimizer: [
