@@ -2,6 +2,7 @@
 import React from 'react';
 import Header from './chunks/Header.jsx';
 import Footer from './chunks/Footer.jsx';
+import Popup from './chunks/Popup.jsx';
 import TaskList from './list/TaskList.jsx';
 
 class App extends React.Component {
@@ -11,12 +12,15 @@ class App extends React.Component {
         this.addTaskForList = this.addTaskForList.bind(this);
         this.addTaskBoard = this.addTaskBoard.bind(this);
         this.editCategory = this.editCategory.bind(this);
+        this.closePopup = this.closePopup.bind(this);
         this.editTask = this.editTask.bind(this);
 
         this.state = {
             taskList: [],
             catList: [],
             isLoaded: false,
+            showPopup: false,
+            editTask: null
         }
 
     }
@@ -28,10 +32,27 @@ class App extends React.Component {
                 title: 'New board'
             }]
         })
+
+    }
+
+    closePopup() {
+        this.setState({
+            showPopup: false,
+            editTask: null
+        })
     }
 
     editTask(value, taskId) {
+        if(value === null) {
+            this.setState({
+                showPopup: true,
+                editTask: this.state.taskList.find((el) => el.id === taskId)
+            })
+            return;
+        } 
+
         this.state.taskList.find((el) => el.id === taskId).title = value;
+        
     }
 
     editCategory(value, catId) {
@@ -41,7 +62,7 @@ class App extends React.Component {
     addTaskForList(value, catId) {
         this.setState({
             taskList: [...this.state.taskList, {
-                id: this.state.taskList.length,
+                id: this.state.taskList.length + 1,
                 title: value,
                 catId: catId
             }]
@@ -61,6 +82,10 @@ class App extends React.Component {
                         editTask={this.editTask}
                         addTaskBoard={this.addTaskBoard} />
                     <Footer />
+                    <Popup 
+                    show={this.state.showPopup} 
+                    closePopup={this.closePopup}
+                    task={this.state.editTask}/>
                 </>
             )
         }

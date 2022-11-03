@@ -5,6 +5,7 @@ class TaskItem extends React.Component {
     constructor(props) {
         super(props);
 
+        this.onDbClickHandler = this.onDbClickHandler.bind(this);
         this.onClickHandler = this.onClickHandler.bind(this);
 
         this.state = {
@@ -30,7 +31,7 @@ class TaskItem extends React.Component {
         }
     }
 
-    onClickHandler(event) {
+    onDbClickHandler(event) {
         clearTimeout(this.timer);
 
         if (event.detail === 1) {
@@ -42,19 +43,23 @@ class TaskItem extends React.Component {
         }
     }
 
+    onClickHandler() {
+        this.props.editTask(null, this.props.task.id)
+    }
+
     render() {
         return (
             <div className="task-list__task task">
                 <div className="task__body">
                     <div className="task__preview">
-                        <div style={{ display: this.state.showInput ? 'none' : 'block' }} className="task__sub-title" onClick={this.onClickHandler}>{this.props.task.title}</div>
+                        <div style={{ display: this.state.showInput ? 'none' : 'block' }} className="task__sub-title" onClick={this.onDbClickHandler}>{this.props.task.title}</div>
                         <div className={"task__input input" + " " + (this.state.showInput ? "show" : "hidden")}>
-                        <input type="text"
-                        onKeyPress={this.handleKeyPress.bind(this)}
-                        defaultValue={this.state.valueInput}
-                        onMouseLeave={this.hadlerHover.bind(this)} />
+                            <input type="text"
+                                onKeyPress={this.handleKeyPress.bind(this)}
+                                defaultValue={this.state.valueInput}
+                                onMouseLeave={this.hadlerHover.bind(this)} />
                         </div>
-                        <button className="task__btn-edit-task">edit</button>
+                        <button className="task__btn-edit-task" onClick={this.onClickHandler}></button>
                     </div>
                     <div className="task__inner">
                         <div className="task__date">10.10.2022</div>
