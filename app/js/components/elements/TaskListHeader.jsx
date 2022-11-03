@@ -10,7 +10,7 @@ class TaskListHeader extends React.Component {
         this.state = {
             timer: null,
             showInput: false,
-            valueInput: this.props.category.title
+            valueInput: props.category.title
         }
     }
 
@@ -25,7 +25,7 @@ class TaskListHeader extends React.Component {
             this.setState({
                 showInput: false
             })
-            this.props.editCategoryTitle(event.target.value, this.props.category.id)
+            this.props.editCategory(event.target.value, this.props.category.id)
         }
     }
 
@@ -39,7 +39,6 @@ class TaskListHeader extends React.Component {
                 showInput: true
             })
         }
-
     }
 
     render() {

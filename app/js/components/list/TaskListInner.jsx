@@ -19,12 +19,15 @@ class TaskListInner extends React.Component {
             <div className="task-list__inner">
 
                 <TaskListHeader
-                editCategoryTitle={this.props.editTitleCat} 
-                category={this.props.category} />
+                    editCategory={this.props.editCategory}
+                    category={this.props.category} />
 
                 <div className="task-list__track">
                     {this.props.taskList.map((el, index) =>
-                        <TaskItem key={index} task={el} />
+                        <TaskItem
+                            key={index}
+                            task={el}
+                            editTask={this.props.editTask} />
                     )}
                 </div>
 

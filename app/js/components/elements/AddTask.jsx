@@ -35,8 +35,11 @@ class AddTask extends React.Component {
     render() {
         return (
             <div className="task-list__add-task-wrap">
-                <div className={"task-list__input input" + " " + (this.state.showInput ? 'show' : 'hidden')} onMouseLeave={this.hadlerHover.bind(this)}>
-                    <input onKeyPress={this.handleKeyPress.bind(this)} type="text" />
+                <div className={"task-list__input input" + " " + (this.state.showInput ? 'show' : 'hidden')}>
+                    <input 
+                    onMouseLeave={this.hadlerHover.bind(this)}
+                    onKeyPress={this.handleKeyPress.bind(this)} 
+                    type="text" />
                 </div>
                 <div className={"task-list__add-task"}>
                     <div className="task-list__add-task-ico"></div>

@@ -10,7 +10,8 @@ class App extends React.Component {
 
         this.addTaskForList = this.addTaskForList.bind(this);
         this.addTaskBoard = this.addTaskBoard.bind(this);
-        this.editCategoryTitle = this.editCategoryTitle.bind(this);
+        this.editCategory = this.editCategory.bind(this);
+        this.editTask = this.editTask.bind(this);
 
         this.state = {
             taskList: [],
@@ -29,7 +30,11 @@ class App extends React.Component {
         })
     }
 
-    editCategoryTitle(value, catId) {
+    editTask(value, taskId) {
+        this.state.taskList.find((el) => el.id === taskId).title = value;
+    }
+
+    editCategory(value, catId) {
         this.state.catList.find((el) => el.id === catId).title = value;
     }
 
@@ -50,9 +55,10 @@ class App extends React.Component {
                     <Header />
                     <TaskList
                         taskList={this.state.taskList}
-                        editCategoryTitle={this.editCategoryTitle}
                         catList={this.state.catList}
+                        editCategory={this.editCategory}
                         addTask={this.addTaskForList}
+                        editTask={this.editTask}
                         addTaskBoard={this.addTaskBoard} />
                     <Footer />
                 </>
@@ -76,25 +82,25 @@ class App extends React.Component {
                     catId: 1
                 },
                 {
-                    id: 1,
+                    id: 3,
                     title: 'Title 1',
                     text: 'text content',
                     catId: 2
                 },
                 {
-                    id: 2,
+                    id: 4,
                     title: 'Title 2',
                     text: 'text content',
                     catId: 2
                 },
                 {
-                    id: 1,
+                    id: 5,
                     title: 'Title 1',
                     text: 'text content',
                     catId: 3
                 },
                 {
-                    id: 2,
+                    id: 6,
                     title: 'Title 2',
                     text: 'text content',
                     catId: 1
