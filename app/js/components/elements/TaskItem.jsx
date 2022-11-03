@@ -5,8 +5,6 @@ class TaskItem extends React.Component {
     constructor(props) {
         super(props);
 
-        console.log(props.task);
-
         this.state = {
             title: props.task.title,
             content: props.task.text

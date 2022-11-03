@@ -8,12 +8,15 @@ class App extends React.Component {
     constructor(props) {
         super(props);
 
+        this.addTaskForList = this.addTaskForList.bind(this);
+
         this.state = {
             taskList: [],
             catList: [],
             isLoaded: false,
             propsTest: ''
         }
+
     }
 
     componentDidMount() {
@@ -23,7 +26,7 @@ class App extends React.Component {
                     id: 1,
                     title: 'Title 1',
                     text: 'text content',
-                    catId: 0
+                    catId: 1
                 },
                 {
                     id: 2,
@@ -75,12 +78,22 @@ class App extends React.Component {
         })
     }
 
+    addTaskForList(value, catId) {
+        this.setState({
+            taskList: [...this.state.taskList, {
+                id: this.state.taskList.length,
+                title: value,
+                catId: catId
+            }]
+        })
+    }
+
     render() {
         if (this.state.isLoaded) {
             return (
                 <>
                     <Header />
-                    <TaskList taskList={this.state.taskList} catList={this.state.catList}/>
+                    <TaskList taskList={this.state.taskList} catList={this.state.catList} addTask={this.addTaskForList}/>
                     <Footer />
                 </>
             )
