@@ -59,7 +59,7 @@ class App extends React.Component {
     editTaskPopup(task) {
         const objTask = this.state.taskList.find((el) => el.id === task.id);
         if (task.title) objTask.title = task.title;
-        if (task.text) objTask.title = task.text;
+        if (task.text) objTask.text = task.text;
     }
 
     editCategory(value, catId) {
@@ -67,7 +67,6 @@ class App extends React.Component {
     }
 
     addTaskForList(task) {
-        console.log(task);
         this.setState({
             taskList: [...this.state.taskList, {
                 id: this.state.taskList.length + 1,

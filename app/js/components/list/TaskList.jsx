@@ -21,7 +21,7 @@ class TaskList extends React.Component {
                             <TaskListInner
                                 category={el}
                                 taskList={this.getListTaskForCat(index + 1)}
-                                key={index}
+                                key={el.id}
                                 editCategory={this.props.editCategory}
                                 addTask={this.props.addTask}
                                 editTask={this.props.editTask}
