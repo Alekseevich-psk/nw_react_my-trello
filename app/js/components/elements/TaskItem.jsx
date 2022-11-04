@@ -5,12 +5,20 @@ class TaskItem extends React.Component {
     constructor(props) {
         super(props);
 
+        this.updateCoords = this.updateCoords.bind(this);
+
         this.state = {
             content: props.task.text,
             timer: null,
             showInput: false,
             title: props.task.title,
-            inputValue: props.task.title
+            inputValue: props.task.title,
+            style: null,
+            mouseMove: false,
+            coords: {
+                x: null,
+                y: null
+            }
         }
     }
 
@@ -25,7 +33,6 @@ class TaskItem extends React.Component {
             this.setState({
                 showInput: false,
             })
-
             this.props.editTask(event.target.value, this.props.task.id);
         }
     }
@@ -36,13 +43,11 @@ class TaskItem extends React.Component {
         if (event.detail === 1) {
             this.timer = setTimeout(this.props.onClick, 200)
         } else if (event.detail === 2) {
-
             if (this.state.inputValue !== this.props.task.title) {
                 this.setState({
                     inputValue: this.props.task.title
                 })
             }
-
             this.setState({
                 showInput: true
             })
@@ -57,9 +62,54 @@ class TaskItem extends React.Component {
         this.props.editTask(null, this.props.task.id)
     }
 
+    updateCoords(event) {
+        const style = {
+            position: 'fixed',
+            zIndex: '1000',
+            top: event.clientY - (event.target.getBoundingClientRect().height / 2),
+            left: event.clientX - (event.target.getBoundingClientRect().width / 2),
+        }
+        this.setState({
+            style: style
+        })
+    }
+
+    onMouseMove(value) {
+        if (value) {
+            window.addEventListener('mousemove', this.updateCoords)
+        } else {
+            window.removeEventListener('mousemove', this.updateCoords)
+            window.onmouseup = null;
+        }
+    }
+
+    handlerOnMouseDown() {
+        this.onMouseMove(true);
+    }
+
+    handlerOnMouseUp(event) {
+        this.props.dragAndDrop({
+            coord: {
+                taskId: this.props.task.id,
+                catId: this.props.task.catId,
+                y: event.clientY - (event.target.getBoundingClientRect().height / 2),
+                x: event.clientX - (event.target.getBoundingClientRect().width / 2),
+            }
+        });
+        this.setState({
+            style: null
+        })
+        this.onMouseMove(false)
+    }
+
     render() {
         return (
-            <div className="task-list__task task">
+            <div
+                style={this.state.style}
+                className="task-list__task task"
+                onMouseDown={this.handlerOnMouseDown.bind(this)}
+                onMouseUp={this.handlerOnMouseUp.bind(this)}
+            >
                 <div className="task__body">
                     <div className="task__preview">
                         <div style={{ display: this.state.showInput ? 'none' : 'block' }} className="task__sub-title" onClick={this.onDbClickHandler.bind(this)}>{this.props.task.title}</div>

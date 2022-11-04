@@ -10,7 +10,9 @@
     "start": "webpack serve --no-client-overlay-warnings",
     "build": "webpack --mode production && prettier --print-width=120 --parser html --write dist/*.html"
   },
-  "dependencies": {},
+  "dependencies": {
+    "react-beautiful-dnd": "^13.1.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.19.6",
     "@babel/preset-env": "^7.19.4",

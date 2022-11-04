@@ -7,6 +7,7 @@ class TaskListInner extends React.Component {
 
     constructor(props) {
         super(props);
+        this.myRef = React.createRef();
         this.addTaskForList = this.addTaskForList.bind(this);
     }
 
@@ -15,9 +16,19 @@ class TaskListInner extends React.Component {
         this.props.addTask(obj);
     }
 
+    componentDidMount() {
+        this.props.dragAndDrop({
+            coordList: {
+                catId: this.props.category.id,
+                first: this.myRef.current.offsetLeft - 10,
+                last: this.myRef.current.offsetLeft + this.myRef.current.clientWidth + 20,
+            }
+        });
+    }
+
     render() {
         return (
-            <div className="task-list__inner">
+            <div className="task-list__inner" ref={this.myRef}>
 
                 <TaskListHeader
                     editCategory={this.props.editCategory}
@@ -26,6 +37,8 @@ class TaskListInner extends React.Component {
                 <div className="task-list__track">
                     {this.props.taskList.map((el) =>
                         <TaskItem
+                            coordMouse={this.props.coordMouse}
+                            dragAndDrop={this.props.dragAndDrop}
                             key={el.id}
                             task={el}
                             editTask={this.props.editTask} />

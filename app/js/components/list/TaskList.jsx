@@ -19,6 +19,8 @@ class TaskList extends React.Component {
                     <div className="task-list__wrapper">
                         {this.props.catList.map((el, index) =>
                             <TaskListInner
+                                coordMouse={this.props.coordMouse}
+                                dragAndDrop={this.props.dragAndDrop}
                                 category={el}
                                 taskList={this.getListTaskForCat(index + 1)}
                                 key={el.id}

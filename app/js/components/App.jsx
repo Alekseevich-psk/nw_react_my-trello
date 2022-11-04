@@ -8,20 +8,25 @@ import TaskList from './list/TaskList.jsx';
 class App extends React.Component {
     constructor(props) {
         super(props);
-
         this.addTaskForList = this.addTaskForList.bind(this);
         this.addTaskBoard = this.addTaskBoard.bind(this);
         this.editCategory = this.editCategory.bind(this);
         this.closePopup = this.closePopup.bind(this);
         this.editTask = this.editTask.bind(this);
         this.editTaskPopup = this.editTaskPopup.bind(this);
+        this.dragAndDrop = this.dragAndDrop.bind(this);
 
         this.state = {
             taskList: [],
             catList: [],
             isLoaded: false,
             showPopup: false,
-            editTask: null
+            editTask: null,
+            coordsTaskList: [],
+            coordMouse: {
+                x: null,
+                y: null
+            }
         }
 
     }
@@ -41,6 +46,24 @@ class App extends React.Component {
             showPopup: false,
             editTask: null
         })
+    }
+
+    dragAndDrop(data) {
+        if (data.coordList) this.state.coordsTaskList.push(data.coordList);
+
+        if (data.coord) {
+
+            const newCatId = this.state.coordsTaskList.find((el) => el.first <= data.coord.x && data.coord.x <= el.last).catId;
+            if (newCatId) {
+                this.state.taskList.find((el) => el.id === data.coord.taskId).catId = newCatId;
+                this.setState({
+                    taskList: this.state.taskList
+                })
+            }
+
+        }
+
+
     }
 
     editTask(value, taskId) {
@@ -83,6 +106,7 @@ class App extends React.Component {
                 <>
                     <Header />
                     <TaskList
+                        dragAndDrop={this.dragAndDrop}
                         taskList={this.state.taskList}
                         catList={this.state.catList}
                         editCategory={this.editCategory}
