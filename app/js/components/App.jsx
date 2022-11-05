@@ -49,13 +49,14 @@ class App extends React.Component {
     }
 
     dragAndDrop(data) {
+        console.log(data);
         if (data.coordList) this.state.coordsTaskList.push(data.coordList);
 
         if (data.coord) {
 
-            const newCatId = this.state.coordsTaskList.find((el) => el.first <= data.coord.x && data.coord.x <= el.last).catId;
+            const newCatId = this.state.coordsTaskList.find((el) => el.first <= data.coord.x && data.coord.x <= el.last);
             if (newCatId) {
-                this.state.taskList.find((el) => el.id === data.coord.taskId).catId = newCatId;
+                this.state.taskList.find((el) => el.id === data.coord.taskId).catId = newCatId.catId;
                 this.setState({
                     taskList: this.state.taskList
                 })

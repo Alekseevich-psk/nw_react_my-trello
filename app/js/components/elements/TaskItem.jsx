@@ -15,6 +15,7 @@ class TaskItem extends React.Component {
             inputValue: props.task.title,
             style: null,
             mouseMove: false,
+            targetElem: null,
             coords: {
                 x: null,
                 y: null
@@ -57,19 +58,33 @@ class TaskItem extends React.Component {
     }
 
     updateCoords(event) {
+        console.log(event.target);
+
+        if(event.target.classList.value != this.state.targetElem) {
+            this.setState({
+                style: null,
+                targetElem: null
+            })
+
+            return;
+        }
+
         const style = {
             position: 'fixed',
-            with: '200px',
-            zIndex: '1000',
+            width: '240px',
+            transform: "rotate(3deg)",
+            zIndex: '9999',
             top: event.clientY - (event.target.getBoundingClientRect().height / 2),
             left: event.clientX - (event.target.getBoundingClientRect().width / 2),
         }
+        
         this.setState({
             style: style
         })
     }
 
     onMouseMove(value) {
+     
         if (value) {
             window.addEventListener('mousemove', this.updateCoords)
         } else {
@@ -78,8 +93,12 @@ class TaskItem extends React.Component {
         }
     }
 
-    handlerOnMouseDown() {
+    handlerOnMouseDown(event) {
         this.onMouseMove(true);
+
+        this.setState({
+            targetElem: event.target.classList.value
+        })
     }
 
     handlerOnMouseUp(event) {
@@ -92,7 +111,8 @@ class TaskItem extends React.Component {
             }
         });
         this.setState({
-            style: null
+            style: null,
+            targetElem: null
         })
         this.onMouseMove(false)
     }
