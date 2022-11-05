@@ -22,12 +22,6 @@ class TaskItem extends React.Component {
         }
     }
 
-    hadlerHover() {
-        this.setState({
-            showInput: false
-        })
-    }
-
     handleKeyPress(event) {
         if (event.charCode == 13) {
             this.setState({
@@ -65,6 +59,7 @@ class TaskItem extends React.Component {
     updateCoords(event) {
         const style = {
             position: 'fixed',
+            with: '200px',
             zIndex: '1000',
             top: event.clientY - (event.target.getBoundingClientRect().height / 2),
             left: event.clientX - (event.target.getBoundingClientRect().width / 2),
@@ -117,8 +112,7 @@ class TaskItem extends React.Component {
                             <input type="text"
                                 onKeyPress={this.handleKeyPress.bind(this)}
                                 value={this.state.inputValue}
-                                onChange={this.handleChange.bind(this)}
-                                onMouseLeave={this.hadlerHover.bind(this)} />
+                                onChange={this.handleChange.bind(this)} />
                         </div>
                         <button className="task__btn-edit-task" onClick={this.onClickHandler.bind(this)}></button>
                     </div>
