@@ -5,6 +5,7 @@ class TaskItem extends React.Component {
     constructor(props) {
         super(props);
 
+        this.myRef = React.createRef();
         this.updateCoords = this.updateCoords.bind(this);
 
         this.state = {
@@ -16,6 +17,7 @@ class TaskItem extends React.Component {
             style: null,
             mouseMove: false,
             targetElem: null,
+            onDnD: true,
             coords: {
                 x: null,
                 y: null
@@ -38,8 +40,10 @@ class TaskItem extends React.Component {
         if (event.detail === 1) {
             this.timer = setTimeout(this.props.onClick, 200)
         } else if (event.detail === 2) {
+            this.onMouseMove(false);
             if (this.state.inputValue !== this.props.task.title) {
                 this.setState({
+                    onDnD: true,
                     inputValue: this.props.task.title
                 })
             }
@@ -58,9 +62,8 @@ class TaskItem extends React.Component {
     }
 
     updateCoords(event) {
-        console.log(event.target);
 
-        if(event.target.classList.value != this.state.targetElem) {
+        if (event.target.classList.value !== this.state.targetElem) {
             this.setState({
                 style: null,
                 targetElem: null
@@ -77,14 +80,14 @@ class TaskItem extends React.Component {
             top: event.clientY - (event.target.getBoundingClientRect().height / 2),
             left: event.clientX - (event.target.getBoundingClientRect().width / 2),
         }
-        
+
         this.setState({
             style: style
         })
     }
 
     onMouseMove(value) {
-     
+
         if (value) {
             window.addEventListener('mousemove', this.updateCoords)
         } else {
@@ -94,32 +97,54 @@ class TaskItem extends React.Component {
     }
 
     handlerOnMouseDown(event) {
-        this.onMouseMove(true);
+        if(this.state.onDnD && !this.state.showInput) {
+            this.onMouseMove(true);
 
-        this.setState({
-            targetElem: event.target.classList.value
-        })
+            this.setState({
+                targetElem: event.target.classList.value
+            })
+        }
     }
 
     handlerOnMouseUp(event) {
+
         this.props.dragAndDrop({
             coord: {
                 taskId: this.props.task.id,
                 catId: this.props.task.catId,
-                y: event.clientY - (event.target.getBoundingClientRect().height / 2),
-                x: event.clientX - (event.target.getBoundingClientRect().width / 2),
+                y: event.clientY,
+                x: event.clientX,
             }
         });
+
         this.setState({
             style: null,
             targetElem: null
         })
-        this.onMouseMove(false)
+
+        this.onMouseMove(false);
+    }
+
+    componentDidMount() {
+        const elem = this.myRef.current;
+        const posElem = elem.getBoundingClientRect();
+
+        this.props.dragAndDrop({
+            coordListItem: {
+                id: this.props.task.id,
+                catId: this.props.task.catId,
+                topElem: posElem.top,
+                bottomElem: posElem.bottom,
+                leftElem: posElem.left,
+                rightElem: posElem.right
+            }
+        });
     }
 
     render() {
         return (
             <div
+                ref={this.myRef}
                 style={this.state.style}
                 className="task-list__task task"
                 onMouseDown={this.handlerOnMouseDown.bind(this)}

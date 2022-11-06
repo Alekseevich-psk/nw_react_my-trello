@@ -23,6 +23,7 @@ class App extends React.Component {
             showPopup: false,
             editTask: null,
             coordsTaskList: [],
+            coordsTasks: [],
             coordMouse: {
                 x: null,
                 y: null
@@ -49,14 +50,90 @@ class App extends React.Component {
     }
 
     dragAndDrop(data) {
-        console.log(data);
+
         if (data.coordList) this.state.coordsTaskList.push(data.coordList);
+
+        if(data.coordList) {
+            console.log(data.coordList);
+        }
+
+        if (data.coordListItem) {
+
+            const elem = this.state.coordsTasks.find((el) => el.id === data.coordListItem.id);
+            if (!elem) {
+                this.state.coordsTasks.push(data.coordListItem);
+            }
+
+        };
+
+        if(data.newCoordForList) {
+            const targetCat = this.state.coordsTaskList.find((el) => el.left <= data.newCoordForList.x && el.right >= data.newCoordForList.x);
+            const indexCatInCatList = this.state.coordsTaskList.indexOf(targetCat);
+
+            const targetCatInCatList = this.state.catList.find((el) => el.id === data.newCoordForList.id);
+            const indexTargetCatInCatList= this.state.catList.indexOf(targetCatInCatList);
+
+            if(targetCat && data.newCoordForList.id !== targetCat.catId) {
+                console.log(indexCatInCatList, indexTargetCatInCatList);
+                this.state.catList[indexCatInCatList] = [this.state.catList[indexTargetCatInCatList],
+                this.state.catList[indexTargetCatInCatList] = this.state.catList[indexCatInCatList]][0];
+
+                this.setState({
+                    catList: this.state.catList
+                })
+            }
+        
+        }
 
         if (data.coord) {
 
-            const newCatId = this.state.coordsTaskList.find((el) => el.first <= data.coord.x && data.coord.x <= el.last);
-            if (newCatId) {
-                this.state.taskList.find((el) => el.id === data.coord.taskId).catId = newCatId.catId;
+            // опр категорию при mouseUp
+            const newCatIdForTask = this.state.coordsTaskList.find((el) => 
+            el.left <= data.coord.x && data.coord.x <= el.right
+            && el.top <= data.coord.y && data.coord.y <= el.bottom);
+
+            // elemInCoordList - если таск отпустить над другим таском, то сюда приходит таск над которым отпустил
+            const elemInCoordList = this.state.coordsTasks.find((el) =>
+                el.topElem <= data.coord.y && data.coord.y <= el.bottomElem
+                && el.leftElem <= data.coord.x && el.rightElem >= data.coord.x);
+
+            // Получаю таск (таскИндекс) в taskList при mouseUp
+            const elemInTaskList = this.state.taskList.find((el) => el.id === data.coord.taskId);
+            const idElemInTaskList = this.state.taskList.indexOf(elemInTaskList);
+
+            // сравниванию id категории при mouseUp
+            const checkCatId = function () {
+                if (newCatIdForTask && data.coord.catId !== newCatIdForTask.catId) return true;
+                return false;
+            }();
+
+            // сравниваю id элемента которы схватил, и тот над которым отпустил
+            const checkElemId = function () {
+                if (elemInCoordList && data.coord && elemInCoordList.id !== data.coord.taskId) return true;
+                return false;
+            }();
+
+            if (checkElemId) {
+                const newIdForTask = this.state.taskList.find((el) => el.id === elemInCoordList.id);
+                const newIndexForTask = this.state.taskList.indexOf(newIdForTask);
+
+                if (checkCatId) {
+                    this.state.taskList.find((el) => el.id === data.coord.taskId).catId = newCatIdForTask.catId;
+                }
+
+                // меняю местами элемент в taskList
+                this.state.taskList[idElemInTaskList] = [this.state.taskList[newIndexForTask],
+                this.state.taskList[newIndexForTask] = this.state.taskList[idElemInTaskList]][0];
+
+                this.setState({
+                    taskList: this.state.taskList
+                })
+
+                return;
+            }
+
+            if (!checkElemId && checkCatId) {
+                this.state.taskList.find((el) => el.id === data.coord.taskId).catId = newCatIdForTask.catId;
                 this.setState({
                     taskList: this.state.taskList
                 })
@@ -144,28 +221,28 @@ class App extends React.Component {
                 },
                 {
                     id: 3,
-                    title: 'Title 1',
+                    title: 'Title 3',
                     text: 'text content',
                     catId: 2,
                     date: null
                 },
                 {
                     id: 4,
-                    title: 'Title 2',
+                    title: 'Title 4',
                     text: 'text content',
                     catId: 2,
                     date: null
                 },
                 {
                     id: 5,
-                    title: 'Title 1',
+                    title: 'Title 5',
                     text: 'text content',
                     catId: 3,
                     date: null
                 },
                 {
                     id: 6,
-                    title: 'Title 2',
+                    title: 'Title 6',
                     text: 'text content',
                     catId: 1,
                     date: null

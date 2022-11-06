@@ -6,18 +6,69 @@ class TaskListHeader extends React.Component {
         super(props);
 
         this.onClickHandler = this.onClickHandler.bind(this);
+        this.updateCoords = this.updateCoords.bind(this);
 
         this.state = {
             timer: null,
+            style: null,
+            onDnD: true,
             showInput: false,
             valueInput: props.category.title
         }
     }
 
-    hadlerHover() {
+    updateCoords(event) {
+        if (this.state.onDnD) {
+            this.props.updateCoords({
+                style: this.state.style,
+                top: event.clientY - (event.target.getBoundingClientRect().height / 2),
+                left: event.clientX - (event.target.getBoundingClientRect().width / 2),
+            })
+        }
+    }
+
+    onMouseMove(value) {
+
+        if (value) {
+            window.addEventListener('mousemove', this.updateCoords)
+        } else {
+            window.removeEventListener('mousemove', this.updateCoords)
+            window.onmouseup = null;
+        }
+    }
+
+    handlerOnMouseDown(event) {
+
+        if (this.state.onDnD) {
+            this.onMouseMove(true);
+            this.setState({
+                style: true,
+                targetElem: event.target.classList.value
+            })
+        }
+    }
+
+    handlerOnMouseUp(event) {
+
         this.setState({
-            showInput: false
+            style: false,
         })
+
+        this.props.dragAndDrop({
+            newCoordForList: {
+                id: this.props.category.id,
+                y: event.clientY,
+                x: event.clientX
+            }
+        });
+
+        this.props.updateCoords({
+            style: false,
+            top: event.clientY - (event.target.getBoundingClientRect().height / 2),
+            left: event.clientX - (event.target.getBoundingClientRect().width / 2),
+        })
+
+        this.onMouseMove(false);
     }
 
     handleKeyPress(event) {
@@ -43,13 +94,16 @@ class TaskListHeader extends React.Component {
 
     render() {
         return (
-            <div className="task-list__header" onClick={this.onClickHandler}>
+            <div
+                onMouseDown={this.handlerOnMouseDown.bind(this)}
+                onMouseUp={this.handlerOnMouseUp.bind(this)}
+                className="task-list__header"
+                onClick={this.onClickHandler}>
                 <div style={{ display: this.state.showInput ? 'none' : 'block' }} className="task-list__title">{this.props.category.title}</div>
                 <div className={"task-list__input input" + " " + (this.state.showInput ? "show" : "hidden")}>
                     <input type="text"
                         onKeyPress={this.handleKeyPress.bind(this)}
-                        defaultValue={this.state.valueInput}
-                        onMouseLeave={this.hadlerHover.bind(this)} />
+                        defaultValue={this.state.valueInput} />
                 </div>
             </div>
         )

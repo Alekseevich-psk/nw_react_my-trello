@@ -64,6 +64,7 @@
     }
 
     &__add-task {
+        user-select: none; 
         transition: $transition;
         display: flex;
         opacity: 0;
