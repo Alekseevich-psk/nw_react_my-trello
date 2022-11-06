@@ -53,10 +53,6 @@ class App extends React.Component {
 
         if (data.coordList) this.state.coordsTaskList.push(data.coordList);
 
-        if(data.coordList) {
-            console.log(data.coordList);
-        }
-
         if (data.coordListItem) {
 
             const elem = this.state.coordsTasks.find((el) => el.id === data.coordListItem.id);
@@ -66,31 +62,41 @@ class App extends React.Component {
 
         };
 
-        if(data.newCoordForList) {
+        if (data.newCoordForList) {
             const targetCat = this.state.coordsTaskList.find((el) => el.left <= data.newCoordForList.x && el.right >= data.newCoordForList.x);
             const indexCatInCatList = this.state.coordsTaskList.indexOf(targetCat);
 
             const targetCatInCatList = this.state.catList.find((el) => el.id === data.newCoordForList.id);
-            const indexTargetCatInCatList= this.state.catList.indexOf(targetCatInCatList);
+            const indexTargetCatInCatList = this.state.catList.indexOf(targetCatInCatList);
 
-            if(targetCat && data.newCoordForList.id !== targetCat.catId) {
-                console.log(indexCatInCatList, indexTargetCatInCatList);
-                this.state.catList[indexCatInCatList] = [this.state.catList[indexTargetCatInCatList],
-                this.state.catList[indexTargetCatInCatList] = this.state.catList[indexCatInCatList]][0];
-
+            if (indexCatInCatList === 0) {
+                const cutElement = this.state.catList.splice(indexTargetCatInCatList, 1);
+                this.state.catList.unshift(cutElement[0]);
                 this.setState({
                     catList: this.state.catList
                 })
+
+                return;
             }
-        
+
+            if (targetCat) {
+                const cutElement = this.state.catList.splice(indexCatInCatList, 1)
+                this.state.catList.splice(indexTargetCatInCatList, 0, cutElement[0])
+                this.setState({
+                    catList: this.state.catList
+                })
+
+                return;
+            }
+
         }
 
         if (data.coord) {
 
             // опр категорию при mouseUp
-            const newCatIdForTask = this.state.coordsTaskList.find((el) => 
-            el.left <= data.coord.x && data.coord.x <= el.right
-            && el.top <= data.coord.y && data.coord.y <= el.bottom);
+            const newCatIdForTask = this.state.coordsTaskList.find((el) =>
+                el.left <= data.coord.x && data.coord.x <= el.right
+                && el.top <= data.coord.y && data.coord.y <= el.bottom);
 
             // elemInCoordList - если таск отпустить над другим таском, то сюда приходит таск над которым отпустил
             const elemInCoordList = this.state.coordsTasks.find((el) =>
