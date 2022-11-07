@@ -98,7 +98,7 @@ class App extends React.Component {
                 this.state.coordsTaskList.splice(indexCatInCoordsTaskList, 0, cutElementCoordsList[0]);
 
                 this.setState({
-                    coordsTaskList: this.state.coordsTaskList,
+                    // coordsTaskList: this.state.coordsTaskList,
                     catList: this.state.catList
                 })
             }
@@ -129,66 +129,104 @@ class App extends React.Component {
 
         if (data.coord) {
 
-            // опр категорию при mouseUp
-            const newCatIdForTask = this.state.coordsTaskList.find((el) =>
-                el.left <= data.coord.x && data.coord.x <= el.right
-                && el.top <= data.coord.y && data.coord.y <= el.bottom);
+            // coordsTasks
+            // taskList
 
-            // сравниванию id категории при mouseUp
-            const checkCatId = function () {
-                if (newCatIdForTask && data.coord.catId === newCatIdForTask.catId) return true;
-                return false;
-            }();
+            let targetElemTaskList = null;
+            let indexTargetElemTaskList = null;
 
-            // targetElemInCoordList - если таск отпустить над другим таском, то сюда приходит таск над которым отпустил
-            const targetElemInCoordList = this.state.coordsTasks.find((el) =>
-                el.topElem <= data.coord.y && data.coord.y <= el.bottomElem
-                && el.leftElem <= data.coord.x && el.rightElem >= data.coord.x);
+            let targetElemCoordsTasks = null;
+            let indexTargetElemCoordsTasks = null;
 
+            this.state.taskList.find(function (el, index) {
+                if (el.id === data.coord.taskId) {
+                    indexTargetElemTaskList = index;
+                    targetElemTaskList = el;
+                }
+            })
 
-            // сравниваю id элемента который схватил, и тот над которым отпустил
-            const checkElemId = function () {
-                if (targetElemInCoordList && data.coord && targetElemInCoordList.id === data.coord.taskId) return true;
-                return false;
-            }();
+            this.state.coordsTasks.find(function (el, index) {
+                if (el.id === data.coord.taskId) {
+                    indexTargetElemCoordsTasks = index;
+                    targetElemCoordsTasks = el;
+                }
+            })
 
-            if (!checkElemId) {
-                // Получаю таск (таскИндекс) в taskList при mouseUp
-                const elemInTaskList = this.state.taskList.find((el) => el.id === data.coord.taskId);
-                const idElemInTaskList = this.state.taskList.indexOf(elemInTaskList);
+            let lowElemCoordsTasks = null;
+            let indexLowElemCoordsTasks = null;
 
-                const newIdForTask = this.state.taskList.find((el) => el.id === targetElemInCoordList.id);
-                const newIndexForTask = this.state.taskList.indexOf(newIdForTask);
+            let lowElemTaskList = null;
+            let indexLowElemTaskList = null;
 
-                console.log(idElemInTaskList, newIndexForTask, newCatIdForTask.catId);
+            this.state.coordsTasks.find(function (el, index) {
+                if (el.leftElem <= data.coord.x
+                    && data.coord.x <= el.rightElem
+                    && el.topElem <= data.coord.y
+                    && data.coord.y <= el.bottomElem) {
+                    lowElemCoordsTasks = el;
+                    indexLowElemCoordsTasks = index;
+                }
+            })
 
-                if (checkCatId) {
-                    this.state.taskList.find((el) => el.id === data.coord.taskId).catId = newCatIdForTask.catId;
+            this.state.taskList.find(function (el, index) {
+                if (lowElemCoordsTasks && el.id === lowElemCoordsTasks.id) {
+                    indexLowElemTaskList = index;
+                    lowElemTaskList = el;
+                }
+            })
+
+            console.log(targetElemTaskList, lowElemTaskList);
+            console.log(indexTargetElemTaskList, indexLowElemTaskList);
+
+            const newCat = this.state.coordsTaskList.find((el) =>
+                data.coord.x >= el.left
+                && data.coord.x <= el.right
+                && data.coord.y >= el.top
+                && data.coord.y <= el.bottom);
+
+            const checkElem = targetElemTaskList !== lowElemTaskList && lowElemTaskList !== null;
+
+            if (checkElem) {
+                let corIndex = function () {
+                    if (indexTargetElemTaskList >= indexLowElemTaskList) {
+                        return 0;
+                    } else {
+                        return 1;
+                    }
                 }
 
-                if (idElemInTaskList !== newIndexForTask) {
+                const catElemCatList = this.state.taskList.splice(indexTargetElemTaskList, 1);
+                catElemCatList[0].catId = newCat.catId;
+                this.state.taskList.splice(indexLowElemTaskList - corIndex, 0, catElemCatList[0]);
 
-                    const cutElement = this.state.taskList.splice(idElemInTaskList, 1);
-                    const cutTargetElem = this.state.taskList.splice(newIndexForTask, 1);
+                const catElemCoordsTasks = this.state.coordsTasks.splice(indexTargetElemCoordsTasks, 1);
+                this.state.coordsTasks.splice(indexLowElemCoordsTasks - corIndex, 0, catElemCoordsTasks[0]);
 
-                    this.state.taskList.splice((newIndexForTask), 0, cutElement[0]);
-                    this.state.taskList.splice((newIndexForTask + 1), 0, cutTargetElem[0]);
+                this.setState({
+                    taskList: this.state.taskList
+                })
 
-                    this.setState({
-                        taskList: this.state.taskList
-                    })
-
-                    return;
-                }
             }
 
+            if (targetElemTaskList.catId !== newCat.catId) {
+                const catElemTaskList = this.state.taskList.splice(indexTargetElemTaskList, 1);
+                catElemTaskList[0].catId = newCat.catId;
 
-            if (!checkElemId && !checkCatId) {
-                this.state.taskList.find((el) => el.id === data.coord.taskId).catId = newCatIdForTask.catId;
+                this.state.taskList.push(catElemTaskList[0]);
+
+                const catElemCoordsTasks = this.state.coordsTasks.splice(indexTargetElemCoordsTasks, 1);
+                catElemCoordsTasks[0].catId = newCat.catId;
+                this.state.coordsTasks.push(catElemCoordsTasks[0]);
+
                 this.setState({
                     taskList: this.state.taskList
                 })
             }
+
+            setTimeout(() => {
+                console.log(this.state.taskList);
+                console.log(this.state.coordsTasks);
+            }, 300);
 
         }
 
