@@ -15,6 +15,7 @@ class App extends React.Component {
         this.editTask = this.editTask.bind(this);
         this.editTaskPopup = this.editTaskPopup.bind(this);
         this.dragAndDrop = this.dragAndDrop.bind(this);
+        this.updateCoordElem = this.updateCoordElem.bind(this);
 
         this.state = {
             taskList: [],
@@ -24,6 +25,7 @@ class App extends React.Component {
             editTask: null,
             coordsTaskList: [],
             coordsTasks: [],
+            updateCoordElem: 1,
             coordMouse: {
                 x: null,
                 y: null
@@ -49,47 +51,81 @@ class App extends React.Component {
         })
     }
 
+    updateCoordElem(value) {
+        this.setState({
+            updateCoordElem: value
+        });
+    }
+
     dragAndDrop(data) {
 
-        if (data.coordList) this.state.coordsTaskList.push(data.coordList);
+        // cat coord
+        if (data.coordList) {
 
-        if (data.coordListItem) {
-
-            const elem = this.state.coordsTasks.find((el) => el.id === data.coordListItem.id);
-            if (!elem) {
-                this.state.coordsTasks.push(data.coordListItem);
+            if (data.coordList.updateCoord) {
+                this.updateCoordElem(this.state.updateCoordElem += 1);
             }
 
-        };
+            const elem = this.state.coordsTaskList.find((el) => el.catId === data.coordList.catId);
+            if (!elem) {
+                this.state.coordsTaskList.push(data.coordList);
+            } else {
+                this.state.coordsTaskList.find((el, index) => {
+                    if (el.catId === data.coordList.catId) {
+                        this.state.coordsTaskList[index] = data.coordList;
+                        this.setState({
+                            coordsTaskList: this.state.coordsTaskList
+                        })
+                    }
+                })
+            }
+        }
 
         if (data.newCoordForList) {
-            const targetCat = this.state.coordsTaskList.find((el) => el.left <= data.newCoordForList.x && el.right >= data.newCoordForList.x);
-            const indexCatInCatList = this.state.coordsTaskList.indexOf(targetCat);
+
+            const targetCatCoordsTaskList = this.state.coordsTaskList.find((el) => el.left <= data.newCoordForList.x && el.right >= data.newCoordForList.x);
+            const indexCatInCoordsTaskList = this.state.coordsTaskList.indexOf(targetCatCoordsTaskList);
 
             const targetCatInCatList = this.state.catList.find((el) => el.id === data.newCoordForList.id);
             const indexTargetCatInCatList = this.state.catList.indexOf(targetCatInCatList);
 
-            if (indexCatInCatList === 0) {
-                const cutElement = this.state.catList.splice(indexTargetCatInCatList, 1);
-                this.state.catList.unshift(cutElement[0]);
+            if (indexCatInCoordsTaskList !== indexTargetCatInCatList) {
+
+                const cutElementCatList = this.state.catList.splice(indexTargetCatInCatList, 1);
+                this.state.catList.splice(indexCatInCoordsTaskList, 0, cutElementCatList[0]);
+
+                const cutElementCoordsList = this.state.coordsTaskList.splice(indexTargetCatInCatList, 1);
+                this.state.coordsTaskList.splice(indexCatInCoordsTaskList, 0, cutElementCoordsList[0]);
+
                 this.setState({
+                    coordsTaskList: this.state.coordsTaskList,
                     catList: this.state.catList
                 })
-
-                return;
-            }
-
-            if (targetCat) {
-                const cutElement = this.state.catList.splice(indexCatInCatList, 1)
-                this.state.catList.splice(indexTargetCatInCatList, 0, cutElement[0])
-                this.setState({
-                    catList: this.state.catList
-                })
-
-                return;
             }
 
         }
+
+        // task coord
+        if (data.coordListItem) {
+
+            if (data.coordListItem.updateCoord) {
+                this.updateCoordElem(this.state.updateCoordElem += 1);
+            }
+
+            const elem = this.state.coordsTasks.find((el) => el.id === data.coordListItem.id);
+            if (!elem) {
+                this.state.coordsTasks.push(data.coordListItem);
+            } else {
+                this.state.coordsTasks.find((el, index) => {
+                    if (el.id === data.coordListItem.id) {
+                        this.state.coordsTasks[index] = data.coordListItem;
+                        this.setState({
+                            coordsTasks: this.state.coordsTasks
+                        })
+                    }
+                })
+            }
+        };
 
         if (data.coord) {
 
@@ -98,47 +134,56 @@ class App extends React.Component {
                 el.left <= data.coord.x && data.coord.x <= el.right
                 && el.top <= data.coord.y && data.coord.y <= el.bottom);
 
-            // elemInCoordList - если таск отпустить над другим таском, то сюда приходит таск над которым отпустил
-            const elemInCoordList = this.state.coordsTasks.find((el) =>
+            // сравниванию id категории при mouseUp
+            const checkCatId = function () {
+                if (newCatIdForTask && data.coord.catId === newCatIdForTask.catId) return true;
+                return false;
+            }();
+
+            // targetElemInCoordList - если таск отпустить над другим таском, то сюда приходит таск над которым отпустил
+            const targetElemInCoordList = this.state.coordsTasks.find((el) =>
                 el.topElem <= data.coord.y && data.coord.y <= el.bottomElem
                 && el.leftElem <= data.coord.x && el.rightElem >= data.coord.x);
 
-            // Получаю таск (таскИндекс) в taskList при mouseUp
-            const elemInTaskList = this.state.taskList.find((el) => el.id === data.coord.taskId);
-            const idElemInTaskList = this.state.taskList.indexOf(elemInTaskList);
 
-            // сравниванию id категории при mouseUp
-            const checkCatId = function () {
-                if (newCatIdForTask && data.coord.catId !== newCatIdForTask.catId) return true;
-                return false;
-            }();
-
-            // сравниваю id элемента которы схватил, и тот над которым отпустил
+            // сравниваю id элемента который схватил, и тот над которым отпустил
             const checkElemId = function () {
-                if (elemInCoordList && data.coord && elemInCoordList.id !== data.coord.taskId) return true;
+                if (targetElemInCoordList && data.coord && targetElemInCoordList.id === data.coord.taskId) return true;
                 return false;
             }();
 
-            if (checkElemId) {
-                const newIdForTask = this.state.taskList.find((el) => el.id === elemInCoordList.id);
+            if (!checkElemId) {
+                // Получаю таск (таскИндекс) в taskList при mouseUp
+                const elemInTaskList = this.state.taskList.find((el) => el.id === data.coord.taskId);
+                const idElemInTaskList = this.state.taskList.indexOf(elemInTaskList);
+
+                const newIdForTask = this.state.taskList.find((el) => el.id === targetElemInCoordList.id);
                 const newIndexForTask = this.state.taskList.indexOf(newIdForTask);
+
+                console.log(idElemInTaskList, newIndexForTask, newCatIdForTask.catId);
 
                 if (checkCatId) {
                     this.state.taskList.find((el) => el.id === data.coord.taskId).catId = newCatIdForTask.catId;
                 }
 
-                // меняю местами элемент в taskList
-                this.state.taskList[idElemInTaskList] = [this.state.taskList[newIndexForTask],
-                this.state.taskList[newIndexForTask] = this.state.taskList[idElemInTaskList]][0];
+                if (idElemInTaskList !== newIndexForTask) {
 
-                this.setState({
-                    taskList: this.state.taskList
-                })
+                    const cutElement = this.state.taskList.splice(idElemInTaskList, 1);
+                    const cutTargetElem = this.state.taskList.splice(newIndexForTask, 1);
 
-                return;
+                    this.state.taskList.splice((newIndexForTask), 0, cutElement[0]);
+                    this.state.taskList.splice((newIndexForTask + 1), 0, cutTargetElem[0]);
+
+                    this.setState({
+                        taskList: this.state.taskList
+                    })
+
+                    return;
+                }
             }
 
-            if (!checkElemId && checkCatId) {
+
+            if (!checkElemId && !checkCatId) {
                 this.state.taskList.find((el) => el.id === data.coord.taskId).catId = newCatIdForTask.catId;
                 this.setState({
                     taskList: this.state.taskList
@@ -190,6 +235,7 @@ class App extends React.Component {
                 <>
                     <Header />
                     <TaskList
+                        updateCoordElem={this.state.updateCoordElem}
                         dragAndDrop={this.dragAndDrop}
                         taskList={this.state.taskList}
                         catList={this.state.catList}

@@ -8,8 +8,8 @@ class TaskList extends React.Component {
         super(props);
     }
 
-    getListTaskForCat(catId) {
-        return this.props.taskList.filter((el) => el.catId == catId)
+    getListTaskForCat(item) {
+        return this.props.taskList.filter(function (el) { if (el) return el.catId == item.id });
     }
 
     render() {
@@ -17,12 +17,13 @@ class TaskList extends React.Component {
             <section className="task-list" >
                 <div className="container">
                     <div className="task-list__wrapper">
-                        {this.props.catList.map((el, index) =>
+                        {this.props.catList.map((el) =>
                             <TaskListInner
                                 coordMouse={this.props.coordMouse}
+                                updateCoordElem={this.props.updateCoordElem}
                                 dragAndDrop={this.props.dragAndDrop}
                                 category={el}
-                                taskList={this.getListTaskForCat(index + 1)}
+                                taskList={this.getListTaskForCat(el)}
                                 key={el.id}
                                 editCategory={this.props.editCategory}
                                 addTask={this.props.addTask}

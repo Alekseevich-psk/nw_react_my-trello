@@ -17,6 +17,7 @@ class TaskItem extends React.Component {
             style: null,
             mouseMove: false,
             targetElem: null,
+            updateCoordElem: this.props.updateCoordElem,
             onDnD: true,
             coords: {
                 x: null,
@@ -117,6 +118,8 @@ class TaskItem extends React.Component {
             }
         });
 
+        this.getCoordElem(true);
+
         this.setState({
             style: null,
             targetElem: null
@@ -125,7 +128,7 @@ class TaskItem extends React.Component {
         this.onMouseMove(false);
     }
 
-    componentDidMount() {
+    getCoordElem(value) {
         const elem = this.myRef.current;
         const posElem = elem.getBoundingClientRect();
 
@@ -136,9 +139,25 @@ class TaskItem extends React.Component {
                 topElem: posElem.top,
                 bottomElem: posElem.bottom,
                 leftElem: posElem.left,
-                rightElem: posElem.right
+                rightElem: posElem.right,
+                updateCoord: value
             }
         });
+    }
+
+    componentDidUpdate() {
+        if (this.props.updateCoordElem !== this.state.updateCoordElem) {
+            this.setState({
+                updateCoordElem: this.props.updateCoordElem
+            })
+
+            this.getCoordElem(false);
+        }
+    }
+
+
+    componentDidMount() {
+        this.getCoordElem(false);
     }
 
     render() {

@@ -12,12 +12,21 @@ class TaskListHeader extends React.Component {
             timer: null,
             style: null,
             onDnD: true,
+            targetElem: null,
             showInput: false,
             valueInput: props.category.title
         }
     }
 
     updateCoords(event) {
+
+        if(event.target !== this.state.targetElem) {
+            this.setState({
+                style: false,
+                targetElem: null
+            })
+        }
+
         if (this.state.onDnD) {
             this.props.updateCoords({
                 style: this.state.style,
@@ -43,9 +52,13 @@ class TaskListHeader extends React.Component {
             this.onMouseMove(true);
             this.setState({
                 style: true,
-                targetElem: event.target.classList.value
+                targetElem: event.target
             })
         }
+
+        this.props.updateCoords({
+            mouseUp: false,
+        })
     }
 
     handlerOnMouseUp(event) {
@@ -64,6 +77,7 @@ class TaskListHeader extends React.Component {
 
         this.props.updateCoords({
             style: false,
+            mouseUp: true,
             top: event.clientY - (event.target.getBoundingClientRect().height / 2),
             left: event.clientX - (event.target.getBoundingClientRect().width / 2),
         })
