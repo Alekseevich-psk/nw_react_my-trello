@@ -197,7 +197,7 @@ class App extends React.Component {
 
             }
 
-            if (targetElemTaskList.catId !== newCat.catId) {
+            if (newCat && targetElemTaskList.catId !== newCat.catId) {
                 const catElemTaskList = this.state.taskList.splice(indexTargetElemTaskList, 1);
                 catElemTaskList[0].catId = newCat.catId;
 
