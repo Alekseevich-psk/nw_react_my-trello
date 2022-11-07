@@ -35,6 +35,7 @@ class App extends React.Component {
     }
 
     addTaskBoard() {
+        this.updateCoordElem(this.state.updateCoordElem += 1);
         this.setState({
             catList: [...this.state.catList, {
                 id: this.state.catList.length + 1,
@@ -253,10 +254,12 @@ class App extends React.Component {
     }
 
     editCategory(value, catId) {
+        this.updateCoordElem(this.state.updateCoordElem += 1);
         this.state.catList.find((el) => el.id === catId).title = value;
     }
 
     addTaskForList(task) {
+        this.updateCoordElem(this.state.updateCoordElem += 1);
         this.setState({
             taskList: [...this.state.taskList, {
                 id: this.state.taskList.length + 1,
