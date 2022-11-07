@@ -176,9 +176,6 @@ class App extends React.Component {
                 }
             })
 
-            console.log(targetElemTaskList, lowElemTaskList);
-            console.log(indexTargetElemTaskList, indexLowElemTaskList);
-
             const newCat = this.state.coordsTaskList.find((el) =>
                 data.coord.x >= el.left
                 && data.coord.x <= el.right
@@ -189,12 +186,9 @@ class App extends React.Component {
 
             if (checkElem) {
                 let corIndex = function () {
-                    if (indexTargetElemTaskList >= indexLowElemTaskList) {
-                        return 0;
-                    } else {
-                        return 1;
-                    }
-                }
+                    if ((indexTargetElemTaskList + 1) >= indexLowElemTaskList) return 0;
+                    return 1;
+                }();
 
                 const catElemCatList = this.state.taskList.splice(indexTargetElemTaskList, 1);
                 catElemCatList[0].catId = newCat.catId;
