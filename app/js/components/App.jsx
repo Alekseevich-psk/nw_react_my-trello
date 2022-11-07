@@ -267,7 +267,7 @@ class App extends React.Component {
                         addTask={this.addTaskForList}
                         editTask={this.editTask}
                         addTaskBoard={this.addTaskBoard} />
-                    <Footer />
+                    <Footer taskList={this.state.taskList.length} />
                     <Popup
                         show={this.state.showPopup}
                         closePopup={this.closePopup}

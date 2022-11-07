@@ -19,8 +19,8 @@ class Footer extends React.Component {
     updateDate() {
         setInterval(() => {
             this.setState({
-                time: new Date().toLocaleTimeString().slice(0, -3),
-                day: new Date().toLocaleDateString()
+                time: new Date().toLocaleDateString(),
+                day: new Date().toLocaleTimeString().slice(0, -3)
             })
         }, 1000);
     }
@@ -30,7 +30,7 @@ class Footer extends React.Component {
             <footer className="footer">
                 <div className="container">
                     <div className="footer__inner">
-                        Всего задач: <span></span>
+                        Всего задач: <span>{this.props.taskList}</span>
                     </div>
                     <div className="footer__inner">
                         <div className="footer__date-time">{this.state.day}</div>
