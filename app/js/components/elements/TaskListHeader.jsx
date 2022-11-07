@@ -14,6 +14,7 @@ class TaskListHeader extends React.Component {
             onDnD: true,
             targetElem: null,
             showInput: false,
+            clickBtnRemove: false,
             valueInput: props.category.title
         }
     }
@@ -23,7 +24,7 @@ class TaskListHeader extends React.Component {
         if(event.target !== this.state.targetElem) {
             this.setState({
                 style: false,
-                targetElem: null
+                targetElem: null,
             })
         }
 
@@ -47,6 +48,14 @@ class TaskListHeader extends React.Component {
     }
 
     handlerOnMouseDown(event) {
+
+        if(this.state.clickBtnRemove) {
+            this.setState({
+                clickBtnRemove: false
+            })
+
+            return;
+        }
 
         if (this.state.onDnD) {
             this.onMouseMove(true);
@@ -85,12 +94,31 @@ class TaskListHeader extends React.Component {
         this.onMouseMove(false);
     }
 
+    removeCat() {
+
+        this.setState({
+            clickBtnRemove: true
+        })
+
+
+        this.props.editCategory({
+            title: null,
+            catId: this.props.category.id,
+            remove: true
+        })
+    }
+
     handleKeyPress(event) {
         if (event.charCode == 13) {
             this.setState({
                 showInput: false
             })
-            this.props.editCategory(event.target.value, this.props.category.id)
+ 
+            this.props.editCategory({
+                title: event.target.value,
+                catId: this.props.category.id,
+                remove: false
+            })
         }
     }
 
@@ -114,6 +142,7 @@ class TaskListHeader extends React.Component {
                 className="task-list__header"
                 onClick={this.onClickHandler}>
                 <div style={{ display: this.state.showInput ? 'none' : 'block' }} className="task-list__title">{this.props.category.title}</div>
+                <div className="task-list__btn-del" onClick={this.removeCat.bind(this)}></div>
                 <div className={"task-list__input input" + " " + (this.state.showInput ? "show" : "hidden")}>
                     <input type="text"
                         onKeyPress={this.handleKeyPress.bind(this)}

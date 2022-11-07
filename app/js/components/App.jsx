@@ -236,9 +236,45 @@ class App extends React.Component {
         if (task.text) objTask.text = task.text;
     }
 
-    editCategory(value, catId) {
+    editCategory(obj) {
+        console.log(obj);
         this.updateCoordElem(this.state.updateCoordElem += 1);
-        this.state.catList.find((el) => el.id === catId).title = value;
+
+        if (obj.title !== null) {
+            this.state.catList.find((el) => el.id === obj.catId).title = obj.title;
+        }
+
+        if (obj.remove) {
+
+            const checkMotivation = confirm("Уверены?");
+            if (!checkMotivation) return;
+
+            this.state.catList.map((el, index) => {
+                if (el.id === obj.catId) {
+                    this.state.catList.splice(index, 1);
+                }
+            });
+
+            const newTaskList = [];
+            this.state.taskList.forEach((el) => {
+                if (el.catId !== obj.catId) {
+                    newTaskList.push(el)
+                }
+            })
+
+            const newCoordsTasks = [];
+            this.state.coordsTasks.forEach((el) => {
+                if (el.catId !== obj.catId) {
+                    newCoordsTasks.push(el)
+                }
+            })
+
+            this.setState({
+                taskList: newTaskList,
+                coordsTasks: newCoordsTasks,
+                catList: this.state.catList
+            })
+        }
     }
 
     addTaskForList(task) {
