@@ -60,7 +60,6 @@ class App extends React.Component {
 
     dragAndDrop(data) {
 
-        // cat coord
         if (data.coordList) {
 
             if (data.coordList.updateCoord) {
@@ -99,14 +98,12 @@ class App extends React.Component {
                 this.state.coordsTaskList.splice(indexCatInCoordsTaskList, 0, cutElementCoordsList[0]);
 
                 this.setState({
-                    // coordsTaskList: this.state.coordsTaskList,
                     catList: this.state.catList
                 })
             }
 
         }
 
-        // task coord
         if (data.coordListItem) {
 
             if (data.coordListItem.updateCoord) {
@@ -129,9 +126,6 @@ class App extends React.Component {
         };
 
         if (data.coord) {
-
-            // coordsTasks
-            // taskList
 
             let targetElemTaskList = null;
             let indexTargetElemTaskList = null;
@@ -217,11 +211,6 @@ class App extends React.Component {
                     taskList: this.state.taskList
                 })
             }
-
-            setTimeout(() => {
-                console.log(this.state.taskList);
-                console.log(this.state.coordsTasks);
-            }, 300);
 
         }
 
