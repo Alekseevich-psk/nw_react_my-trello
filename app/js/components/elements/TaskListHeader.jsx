@@ -39,8 +39,10 @@ class TaskListHeader extends React.Component {
 
     onMouseMove(value) {
 
-        if (value) {
-            window.addEventListener('mousemove', this.updateCoords)
+        if (value && !this.state.showInput) {
+            setTimeout(() => {
+                window.addEventListener('mousemove', this.updateCoords)
+            }, 100);
         } else {
             window.removeEventListener('mousemove', this.updateCoords)
             window.onmouseup = null;
@@ -128,6 +130,7 @@ class TaskListHeader extends React.Component {
         if (event.detail === 1) {
             this.timer = setTimeout(this.props.onClick, 200)
         } else if (event.detail === 2) {
+            
             this.setState({
                 showInput: true
             })
