@@ -1,9 +1,14 @@
 .task-list {
     position: relative;
+    z-index: 1;
     padding: 90px 0;
     height: 100vh;
     overflow-y: hidden;
     background-color: $bgMain;
+
+    @media(max-width: $mobile) {
+        overflow-y: auto;
+    }
 
     .container {
         overflow: hidden;
@@ -26,7 +31,12 @@
         align-items: flex-start;
         overflow-y: hidden;
         padding-bottom: 40px;
-        // border: 1px solid rgb(255, 255, 255);
+
+        @media(max-width: $mobile) {
+            flex-direction: column;
+            width: 100%;
+        }
+    
     }
 
     &__inner {
@@ -38,6 +48,13 @@
         min-width: 280px;
         max-width: 280px;
         box-shadow: 0px 0px 20px $borderOpacity;
+
+        @media(max-width: $mobile) {
+            margin-right: 0;
+            min-width: 100%;
+            max-width: 100%;
+            margin-bottom: 20px;
+        }
 
         &:hover {
             .task-list__add-task {
@@ -56,6 +73,10 @@
         margin-bottom: 12px;
         max-height: 60vh;
         overflow-y: auto;
+
+        @media(max-width: $mobile) {
+            max-height: auto;
+        }
     }
 
     &__header {
@@ -93,6 +114,12 @@
         visibility: hidden;
         height: 0;
 
+        @media(max-width: $mobile) {
+            opacity: 1;
+            visibility: visible;
+            height: auto;
+        }
+
         &-btn {
             cursor: pointer;
             color: $whiteColor;
@@ -121,6 +148,10 @@
         transition: $transition;
 
         &:hover {
+            background-color: #fff;
+        }
+
+        @media(max-width: $mobile) {
             background-color: #fff;
         }
 
