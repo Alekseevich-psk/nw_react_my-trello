@@ -231,6 +231,7 @@ class App extends React.Component {
     }
 
     editTaskPopup(task) {
+        console.log(task);
         const objTask = this.state.taskList.find((el) => el.id === task.id);
         if (task.title) objTask.title = task.title;
         if (task.text) objTask.text = task.text;

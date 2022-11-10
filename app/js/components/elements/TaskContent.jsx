@@ -10,8 +10,11 @@ class TaskContent extends React.Component {
 
         this.state = {
             showTextArea: false,
-            textContent: props.task.text
+            textContent: props.task.text,
+            hideBtnAddContent: false
         }
+
+        console.log(this.state.textContent);
 
     }
 
@@ -23,6 +26,19 @@ class TaskContent extends React.Component {
         this.props.updateTask({
             id: this.props.task.id,
             text: this.state.textContent
+        })
+
+        if(this.state.textContent.length === 0) {
+            this.setState({
+                hideBtnAddContent: false
+            })
+        }
+    }
+
+    addContent() {
+        this.setState({
+            showTextArea: true,
+            hideBtnAddContent: true
         })
     }
 
@@ -44,6 +60,14 @@ class TaskContent extends React.Component {
         }
     }
 
+    componentDidMount() {
+        if(this.props.task.text) {
+            this.setState({
+                hideBtnAddContent: true
+            })
+        }
+    }
+
     render() {
         return (
             <div className="popup__wrapper">
@@ -51,7 +75,7 @@ class TaskContent extends React.Component {
                     style={{ display: this.state.showTextArea ? 'none' : 'block' }}
                     className="popup__text"
                     onClick={this.onDbClickHandler}>
-                    {this.props.task.text}
+                    {this.state.textContent}
                 </div>
                 <div className={"popup__text-area-wrap " + (this.state.showTextArea ? "show" : "hidden")}>
                     <textarea
@@ -60,6 +84,16 @@ class TaskContent extends React.Component {
                         defaultValue={this.props.task.text}
                     ></textarea>
                     <button className='popup__btn' onClick={this.onHandlerClick}>Сохранить</button>
+                </div>
+                <div
+                    className="popup__align"
+                    style={{
+                        display: this.state.hideBtnAddContent ? 'none' : 'block'
+                    }}
+                >
+                    <button
+                        onClick={this.addContent.bind(this)}
+                        className="popup__btn">Добавить описание</button>
                 </div>
             </div>
         )
