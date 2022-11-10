@@ -1,6 +1,7 @@
 import React from 'react';
 import TaskContent from './../elements/TaskContent.jsx';
 import Input from './../elements/Input.jsx';
+import FooterPopup from './../elements/FooterPopup.jsx';
 
 class Popup extends React.Component {
 
@@ -68,19 +69,11 @@ class Popup extends React.Component {
                                     task={this.props.task}
                                     updateTask={this.props.updateTask}
                                 />
-                                <div className="popup__footer">
-                                    <div className="popup__category">
-                                        <select name="cat" className="select__select">
-                                            {/* <option value="cat1" selected>cat1</option>
-                                            <option value="cat2">cat2</option>
-                                            <option value="cat3">cat3</option>
-                                            <option value="cat4">cat4</option> */}
-                                        </select>
-                                    </div>
-                                    <div className="popup__remove">
-                                        <button className="popup__btn popup__btn--remove-tsk">Удалить</button>
-                                    </div>
-                                </div>
+                                <FooterPopup
+                                    task={this.props.task}
+                                    catList={this.props.catList}
+                                    updateTask={this.props.updateTask}
+                                />
                             </div>
                         </div>
                     </div>

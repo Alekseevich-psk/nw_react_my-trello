@@ -235,6 +235,7 @@ class App extends React.Component {
         const objTask = this.state.taskList.find((el) => el.id === task.id);
         if (task.title) objTask.title = task.title;
         if (task.text) objTask.text = task.text;
+        if (task.newCatValue) objTask.catId = task.newCatValue;
     }
 
     editCategory(obj) {
@@ -306,6 +307,7 @@ class App extends React.Component {
                         addTaskBoard={this.addTaskBoard} />
                     <Footer taskList={this.state.taskList.length} />
                     <Popup
+                        catList={this.state.catList}
                         show={this.state.showPopup}
                         closePopup={this.closePopup}
                         updateTask={this.editTaskPopup}
