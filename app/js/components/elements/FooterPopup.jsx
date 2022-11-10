@@ -5,8 +5,6 @@ class AddTask extends React.Component {
     constructor(props) {
         super(props);
 
-        console.log(this.props.task, this.props.catList);
-
         this.state = {
             catList: this.props.catList,
             selectedValueCatId: this.props.task.catId
@@ -25,18 +23,30 @@ class AddTask extends React.Component {
         })
     }
 
+    removeTask() {
+        this.props.updateTask({
+            id: this.props.task.id,
+            removeTask: true
+        })
+    }
+
     render() {
         return (
             <div className="popup__footer">
                 <div className="popup__category">
-                    <select onChange={this.changeSelectValue.bind(this)} value={this.state.selectedValueCatId} className="select__select">
+                    <select 
+                    onChange={this.changeSelectValue.bind(this)} 
+                    value={this.state.selectedValueCatId} 
+                    className="select__select">
                         {this.state.catList.map((el) => {
                             return <option value={el.id} key={el.id}>{el.title}</option>;
                         })}
                     </select>
                 </div>
                 <div className="popup__remove">
-                    <button className="popup__btn popup__btn--remove-tsk">Удалить</button>
+                    <button 
+                    onClick={this.removeTask.bind(this)}
+                    className="popup__btn popup__btn--remove-tsk">Удалить</button>
                 </div>
             </div>
         )

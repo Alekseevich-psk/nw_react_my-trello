@@ -231,11 +231,46 @@ class App extends React.Component {
     }
 
     editTaskPopup(task) {
-        console.log(task);
         const objTask = this.state.taskList.find((el) => el.id === task.id);
         if (task.title) objTask.title = task.title;
         if (task.text) objTask.text = task.text;
         if (task.newCatValue) objTask.catId = task.newCatValue;
+
+        if (task.removeTask) {
+            const checkMotivation = confirm("Уверены?");
+            if (!checkMotivation) return;
+
+            let targetElemTaskList = null;
+            let indexTargetElemTaskList = null;
+
+            let targetElemCoordsTasks = null;
+            let indexTargetElemCoordsTasks = null;
+
+            this.state.taskList.find(function (el, index) {
+                if (el.id === task.id) {
+                    indexTargetElemTaskList = index;
+                    targetElemTaskList = el;
+                }
+            })
+
+            this.state.coordsTasks.find(function (el, index) {
+                if (el.id === task.id) {
+                    indexTargetElemCoordsTasks = index;
+                    targetElemCoordsTasks = el;
+                }
+            })
+
+            this.state.taskList.splice(indexTargetElemTaskList, 1);
+            this.state.coordsTasks.splice(indexTargetElemTaskList, 1);
+
+            this.setState({
+                taskList: this.state.taskList,
+                coordsTasks: this.state.coordsTasks,
+                showPopup: false,
+                editTask: null
+            })
+
+        }
     }
 
     editCategory(obj) {

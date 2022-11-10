@@ -14,8 +14,6 @@ class TaskContent extends React.Component {
             hideBtnAddContent: false
         }
 
-        console.log(this.state.textContent);
-
     }
 
     onHandlerClick() {
@@ -81,7 +79,7 @@ class TaskContent extends React.Component {
                     <textarea
                         onChange={this.getContent.bind(this)}
                         className="popup__text-area"
-                        defaultValue={this.props.task.text}
+                        defaultValue={this.state.textContent}
                     ></textarea>
                     <button className='popup__btn' onClick={this.onHandlerClick}>Сохранить</button>
                 </div>
