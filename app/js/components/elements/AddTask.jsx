@@ -16,6 +16,12 @@ class AddTask extends React.Component {
         })
     }
 
+    focusChange() {
+        this.setState({
+            showInput: false
+        })
+    }
+
     handleKeyPress(event) {
         if (event.charCode == 13) {
             this.setState({
@@ -30,18 +36,12 @@ class AddTask extends React.Component {
         }
     }
 
-    hadlerHover() {
-        this.setState({
-            showInput: false
-        })
-    }
-
     render() {
         return (
             <div className="task-list__add-task-wrap">
                 <div className={"task-list__input input" + " " + (this.state.showInput ? 'show' : 'hidden')}>
                     <input
-                        onMouseLeave={this.hadlerHover.bind(this)}
+                        onBlur={this.focusChange.bind(this)}
                         onKeyPress={this.handleKeyPress.bind(this)}
                         type="text" />
                 </div>
