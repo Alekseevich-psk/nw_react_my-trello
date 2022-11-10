@@ -138,8 +138,8 @@ class TaskItem extends React.Component {
                 catId: this.props.task.catId,
                 topElem: posElem.top,
                 bottomElem: posElem.bottom,
-                leftElem: posElem.left,
-                rightElem: posElem.right,
+                leftElem: elem.offsetLeft ,
+                rightElem: elem.offsetRight,
                 updateCoord: value
             }
         });

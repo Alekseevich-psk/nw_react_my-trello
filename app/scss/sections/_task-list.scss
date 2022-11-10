@@ -2,15 +2,19 @@
     position: relative;
     padding: 90px 0;
     height: 100vh;
-    overflow-y: auto;
+    overflow-y: hidden;
     background-color: $bgMain;
+
+    .container {
+        overflow: hidden;
+    }
 
     &__title {
         font-size: 14px;
         font-weight: 700;
         color: $textColor;
         padding: 6px 8px 6px;
-        user-select: none; 
+        user-select: none;
 
         &.hide {
             display: none;
@@ -20,14 +24,14 @@
     &__wrapper {
         display: flex;
         align-items: flex-start;
-        overflow-x: auto;
+        overflow-y: hidden;
         padding-bottom: 40px;
         // border: 1px solid rgb(255, 255, 255);
     }
 
     &__inner {
-        margin-right: 20px;
         position: relative;
+        margin-right: 20px;
         border-radius: $borderRadius;
         padding-bottom: 12px;
         background-color: rgb(170, 165, 165);
@@ -46,13 +50,17 @@
     }
 
     &__track {
+        position: relative;
+        padding: 0;
+        margin: 0;
         margin-bottom: 12px;
         max-height: 60vh;
         overflow-y: auto;
     }
 
     &__header {
-        position: relative;
+        position: sticky;
+        top: 0;
         z-index: 2;
         width: 100%;
         border-radius: $borderRadius;
@@ -74,14 +82,16 @@
     }
 
     &__add-task {
-        user-select: none; 
+        position: relative;
+        user-select: none;
         transition: $transition;
+        padding: 0;
         display: flex;
-        opacity: 0;
         align-items: center;
+
+        opacity: 0;
         visibility: hidden;
         height: 0;
-        padding: 0;
 
         &-btn {
             cursor: pointer;
