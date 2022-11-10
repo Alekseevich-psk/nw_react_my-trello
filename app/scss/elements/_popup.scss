@@ -134,10 +134,13 @@
         }
 
         &--remove-tsk {
-            background-color: $subActive;
+            background-color: transparent;
+            color: $subActive;
+            border: 1px solid $subActive;
 
             &:hover {
                 background-color: $subActiveHover;
+                color: $whiteColor;
             }
         }
     }

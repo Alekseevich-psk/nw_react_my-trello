@@ -28,6 +28,10 @@ class TaskItem extends React.Component {
 
     handleKeyPress(event) {
         if (event.charCode == 13) {
+            if(event.target.value.length === 0 || event.target.value === "") {
+                event.target.value = 'Введите название..'
+            }
+
             this.setState({
                 showInput: false,
             })
@@ -90,14 +94,19 @@ class TaskItem extends React.Component {
     onMouseMove(value) {
 
         if (value) {
-            window.addEventListener('mousemove', this.updateCoords)
+            setTimeout(() => {
+                window.addEventListener('mousemove', this.updateCoords)
+            }, 100);
         } else {
             window.removeEventListener('mousemove', this.updateCoords)
             window.onmouseup = null;
         }
     }
 
+
+
     handlerOnMouseDown(event) {
+
         if(this.state.onDnD && !this.state.showInput) {
             this.onMouseMove(true);
 
@@ -108,6 +117,11 @@ class TaskItem extends React.Component {
     }
 
     handlerOnMouseUp(event) {
+
+        this.setState({
+            mouseMove: false,
+            smoothnessClick: false
+        })
 
         this.props.dragAndDrop({
             coord: {
