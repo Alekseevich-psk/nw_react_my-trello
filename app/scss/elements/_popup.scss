@@ -135,6 +135,10 @@
 
         &--remove-tsk {
             background-color: $subActive;
+
+            &:hover {
+                background-color: $subActiveHover;
+            }
         }
     }
 
