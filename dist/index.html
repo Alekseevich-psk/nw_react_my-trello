@@ -2,140 +2,111 @@
 <html lang="ru">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="shortcut icon" href="favicon/favicon.ico" />
-    <link rel="stylesheet" href="css/style.bundle.css" />
-
+    <link rel="stylesheet" href="./css/style.bundle.css" />
     <title>My-trello</title>
   </head>
   <body>
     <div id="app">
-        <header class="header">
-    <div class="container">
-        <div class="header__title">
-            <img src="./img/task-list-ico.svg" alt="">
-            <span>Task manager</span></div>
-        <div class="header__profile">
-            <div class="header__ico">
-                <img src="./img/profile.svg" alt="">
-            </div>
+      <header class="header">
+        <div class="container">
+          <div class="header__title"><img src="./img/task-list-ico.svg" alt="" /> <span>Task manager</span></div>
+          <div class="header__profile">
+            <div class="header__ico"><img src="./img/profile.svg" alt="" /></div>
             <div class="header__auth">
-                <button class="header__btn header__btn--profile">Профиль</button>
-                <button class="header__btn header__btn--out">Выход</button>
+              <button class="header__btn header__btn--profile">Профиль</button>
+              <button class="header__btn header__btn--out">Выход</button>
             </div>
+          </div>
         </div>
-    </div>
-</header>
-
-            <section class="task-list">
-                <div class="container">
-                    <div class="task-list__wrapper">
-                        <div class="task-list__inner">
-                            <div class="task-list__header">
-                                <div class="task-list__title">В работу</div>
-                                <div class="task-list__btn-del"></div>
-                                <div class="task-list__input input">
-                                    <input type="text">
-                                </div>
-                            </div>
-
-                            <div class="task-list__track">
-
-                                <div class="task-list__task task">
-                                    <div class="task__body">
-                                        <div class="task__preview">
-                                            <div class="task__sub-title">Lorem ipsum dolor sit amet, consectetur
-                                                adipisicing elit.</div>
-                                            <div class="task__input input">
-                                                <input type="text">
-                                            </div>
-                                            <button class="task__btn-edit-task">edit</button>
-                                        </div>
-                                        <div class="task__inner">
-                                            <div class="task__date">10.10.2022</div>
-                                            <div class="task__text-area">
-                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, minima.
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="task-list__add-task">
-                                <div class="task-list__input input">
-                                    <input type="text">
-                                </div>
-                            </div>
-                            <div class="task-list__add-task">
-                                <div class="task-list__add-task-ico"></div>
-                                <button class="task-list__add-task-btn">Добавить задачу</button>
-                            </div>
-                        </div>
+      </header>
+      <section class="task-list">
+        <div class="container">
+          <div class="task-list__wrapper">
+            <div class="task-list__inner">
+              <div class="task-list__header">
+                <div class="task-list__title">В работу</div>
+                <div class="task-list__btn-del"></div>
+                <div class="task-list__input input"><input /></div>
+              </div>
+              <div class="task-list__track">
+                <div class="task-list__task task">
+                  <div class="task__body">
+                    <div class="task__preview">
+                      <div class="task__sub-title">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
+                      <div class="task__input input"><input /></div>
+                      <button class="task__btn-edit-task">edit</button>
                     </div>
-                    <div class="task-list__btn-add-wrap-task">
-                        <img src="./img/btn-add.svg" alt="">
+                    <div class="task__inner">
+                      <div class="task__date">10.10.2022</div>
+                      <div class="task__text-area">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius, minima.
+                      </div>
                     </div>
+                  </div>
                 </div>
-            </section>
-
-            <footer class="footer">
-    <div class="container">
-        <div class="footer__inner">
-            Всего задач: <span></span>
+              </div>
+              <div class="task-list__add-task">
+                <div class="task-list__input input"><input /></div>
+              </div>
+              <div class="task-list__add-task">
+                <div class="task-list__add-task-ico"></div>
+                <button class="task-list__add-task-btn">Добавить задачу</button>
+              </div>
+            </div>
+          </div>
+          <div class="task-list__btn-add-wrap-task"><img src="./img/btn-add.svg" alt="" /></div>
         </div>
-        <div class="footer__inner">
+      </section>
+      <footer class="footer">
+        <div class="container">
+          <div class="footer__inner">Всего задач: <span></span></div>
+          <div class="footer__inner">
             <div class="footer__date-time">10.32</div>
-           <div class="footer__date-day">10.10.2022</div>
+            <div class="footer__date-day">10.10.2022</div>
+          </div>
         </div>
-    </div>
-</footer>
-                <div class="popup">
-    <div class="popup__overlay">
-        <div class="popup__body">
-            <div class="popup__close">
-                <img src="./img/close-btn.svg" alt="">
-            </div>
+      </footer>
+      <div class="popup">
+        <div class="popup__overlay">
+          <div class="popup__body">
+            <div class="popup__close"><img src="./img/close-btn.svg" alt="" /></div>
             <div class="popup__inner">
-                <div class="popup__header">
-                    <div class="popup__title">Title</div>
-                    <div class="popup__input input">
-                        <input type="text">
-                    </div>
-                    <div class="popup__date">10.10.2022</div>
+              <div class="popup__header">
+                <div class="popup__title">Title</div>
+                <div class="popup__input input"><input /></div>
+                <div class="popup__date">10.10.2022</div>
+              </div>
+              <div class="popup__wrapper">
+                <div class="popup__text">Ввести данные..</div>
+                <div class="popup__text-area-wrap">
+                  <textarea class="popup__text-area"></textarea> <button class="popup__btn">Сохранить</button>
                 </div>
-                <div class="popup__wrapper">
-                    <div class="popup__text">Ввести данные..</div>
-                    <div class="popup__text-area-wrap">
-                        <textarea class="popup__text-area"></textarea>
-                        <button class="popup__btn">Сохранить</button>
-                    </div>
-                    <div class="popup__align">
-                        <button class="popup__btn">Добавить описание</button>
-                    </div>
+                <div class="popup__align"><button class="popup__btn">Добавить описание</button></div>
+              </div>
+              <div class="popup__footer">
+                <div class="popup__category">
+                  <select name="cat" class="select__select">
+                    <option value="cat1" selected="selected">cat1</option>
+                    <option value="cat2">cat2</option>
+                    <option value="cat3">cat3</option>
+                    <option value="cat4">cat4</option>
+                  </select>
                 </div>
-                <div class="popup__footer">
-                    <div class="popup__category">
-                        <select name="cat" class="select__select">
-                            <option value="cat1" selected>cat1</option>
-                            <option value="cat2">cat2</option>
-                            <option value="cat3">cat3</option>
-                            <option value="cat4">cat4</option>
-                        </select>
-                    </div>
-                    <div class="popup__remove">
-                        <button class="popup__btn popup__btn--remove-tsk">Удалить</button>
-                    </div>
-                </div>
+                <div class="popup__remove"><button class="popup__btn popup__btn--remove-tsk">Удалить</button></div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+      <script src="./js/bundle.js"></script>
     </div>
-</div>
-                    <script src="js/bundle.js"></script>
-</body>
-
+  </body>
 </html>
-    </div>
