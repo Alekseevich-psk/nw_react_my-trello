@@ -15,8 +15,8 @@ root.render(
     <StrictMode>
         <BrowserRouter>
             <Routes>
-                <Route path="/dist" element={<App />}></Route>
-                <Route path="/dist/:id" element={<GetParamsApp />}></Route>
+                <Route path="/" element={<App />}></Route>
+                <Route path="/:id" element={<GetParamsApp />}></Route>
             </Routes>
         </BrowserRouter>
     </StrictMode>
