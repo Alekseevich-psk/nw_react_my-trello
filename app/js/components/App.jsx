@@ -4,6 +4,7 @@ import Header from './chunks/Header.jsx';
 import Footer from './chunks/Footer.jsx';
 import Popup from './chunks/Popup.jsx';
 import TaskList from './list/TaskList.jsx';
+import ErrorPage from "./ErrorPage.jsx";
 
 class App extends React.Component {
     constructor(props) {
@@ -25,11 +26,8 @@ class App extends React.Component {
             editTask: null,
             coordsTaskList: [],
             coordsTasks: [],
+            getIdTaskParams: false,
             updateCoordElem: 1,
-            coordMouse: {
-                x: null,
-                y: null
-            }
         }
 
     }
@@ -126,6 +124,8 @@ class App extends React.Component {
         };
 
         if (data.coord) {
+
+            console.log(data.coord);
 
             let targetElemTaskList = null;
             let indexTargetElemTaskList = null;
@@ -230,38 +230,61 @@ class App extends React.Component {
 
     }
 
+    findTaskInList(id) {
+        let targetElemTaskList = null;
+        let indexTargetElemTaskList = null;
+
+        let targetElemCoordsTasks = null;
+        let indexTargetElemCoordsTasks = null;
+
+        this.state.taskList.find(function (el, index) {
+            if (el.id === id) {
+                indexTargetElemTaskList = index;
+                targetElemTaskList = el;
+            }
+        })
+
+        this.state.coordsTasks.find(function (el, index) {
+            if (el.id === id) {
+                indexTargetElemCoordsTasks = index;
+                targetElemCoordsTasks = el;
+            }
+        })
+
+        return {
+            targetElemTaskList: targetElemTaskList,
+            indexTargetElemTaskList: indexTargetElemTaskList,
+            targetElemCoordsTasks: targetElemCoordsTasks,
+            indexTargetElemCoordsTasks: indexTargetElemCoordsTasks,
+        }
+    }
+
     editTaskPopup(task) {
+
         const objTask = this.state.taskList.find((el) => el.id === task.id);
+        
         if (task.title) objTask.title = task.title;
         if (task.text) objTask.text = task.text;
-        if (task.newCatValue) objTask.catId = task.newCatValue;
+
+        if (task.newCatValue) {
+            objTask.catId = task.newCatValue;
+        }
+
+        if(task && !task.removeTask) {
+            this.setState({
+                taskList: this.state.taskList,
+                coordsTasks: this.state.coordsTasks
+            })
+        }
 
         if (task.removeTask) {
             const checkMotivation = confirm("Уверены?");
             if (!checkMotivation) return;
 
-            let targetElemTaskList = null;
-            let indexTargetElemTaskList = null;
+            const taskInList = this.findTaskInList(task.id);
 
-            let targetElemCoordsTasks = null;
-            let indexTargetElemCoordsTasks = null;
-
-            this.state.taskList.find(function (el, index) {
-                if (el.id === task.id) {
-                    indexTargetElemTaskList = index;
-                    targetElemTaskList = el;
-                }
-            })
-
-            this.state.coordsTasks.find(function (el, index) {
-                if (el.id === task.id) {
-                    indexTargetElemCoordsTasks = index;
-                    targetElemCoordsTasks = el;
-                }
-            })
-
-            this.state.taskList.splice(indexTargetElemTaskList, 1);
-            this.state.coordsTasks.splice(indexTargetElemTaskList, 1);
+            this.state.taskList.splice(taskInList.indexTargetElemTaskList, 1);
+            this.state.coordsTasks.splice(taskInList.indexTargetElemTaskList, 1);
 
             this.setState({
                 taskList: this.state.taskList,
@@ -327,6 +350,7 @@ class App extends React.Component {
     }
 
     render() {
+
         if (this.state.isLoaded) {
             return (
                 <>
@@ -352,7 +376,22 @@ class App extends React.Component {
         }
     }
 
+    componentDidUpdate() {
+
+        if (this.state.taskList.length && this.props.id) {
+            const task = this.state.taskList.find((el) => el.id === Number(this.props.id));
+            if (task && !this.state.getIdTaskParams) {
+                this.setState({
+                    showPopup: true,
+                    editTask: task,
+                    getIdTaskParams: true
+                })
+            }
+        }
+    }
+
     componentDidMount() {
+
         this.setState({
             taskList: [
                 {
@@ -415,6 +454,7 @@ class App extends React.Component {
             ],
             isLoaded: true
         })
+
     }
 }
 

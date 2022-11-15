@@ -38,7 +38,7 @@ const config = {
             directory: path.join(__dirname, "dist/js"),
         },
         compress: false,
-        // hot: false,
+        // hot: true,
         client: {
             progress: true,
             overlay: {
@@ -48,6 +48,7 @@ const config = {
         },
         compress: true,
         port: 9000,
+        historyApiFallback: true,
     },
     optimization: {
         minimize: true,

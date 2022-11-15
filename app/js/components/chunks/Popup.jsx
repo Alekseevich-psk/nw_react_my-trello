@@ -2,6 +2,7 @@ import React from 'react';
 import TaskContent from './../elements/TaskContent.jsx';
 import Input from './../elements/Input.jsx';
 import FooterPopup from './../elements/FooterPopup.jsx';
+import { Link } from 'react-router-dom';
 
 class Popup extends React.Component {
 
@@ -47,9 +48,9 @@ class Popup extends React.Component {
                 <div className={"popup " + (this.props.show ? "is-active" : "")}>
                     <div className="popup__overlay">
                         <div className="popup__body">
-                            <div className="popup__close" onClick={this.onHandlerClick.bind(this)}>
+                            <Link to="/" className="popup__close" onClick={this.onHandlerClick.bind(this)}>
                                 <img src={"./img/close-btn.svg"} alt="" />
-                            </div>
+                            </Link>
                             <div className="popup__inner">
                                 <div className="popup__header">
                                     <div

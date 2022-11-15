@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class TaskItem extends React.Component {
 
@@ -28,7 +29,7 @@ class TaskItem extends React.Component {
 
     handleKeyPress(event) {
         if (event.charCode == 13) {
-            if(event.target.value.length === 0 || event.target.value === "") {
+            if (event.target.value.length === 0 || event.target.value === "") {
                 event.target.value = 'Введите название..'
             }
 
@@ -63,7 +64,7 @@ class TaskItem extends React.Component {
     }
 
     onClickHandler() {
-        this.props.editTask(null, this.props.task.id)
+        // this.props.editTask(null, this.props.task.id)
     }
 
     updateCoords(event) {
@@ -107,7 +108,7 @@ class TaskItem extends React.Component {
 
     handlerOnMouseDown(event) {
 
-        if(this.state.onDnD && !this.state.showInput) {
+        if (this.state.onDnD && !this.state.showInput) {
             this.onMouseMove(true);
 
             this.setState({
@@ -192,7 +193,7 @@ class TaskItem extends React.Component {
                                 value={this.state.inputValue}
                                 onChange={this.handleChange.bind(this)} />
                         </div>
-                        <button className="task__btn-edit-task" onClick={this.onClickHandler.bind(this)}></button>
+                        <Link to={"/" + this.props.task.id} className="task__btn-edit-task" ></Link>
                     </div>
                     <div className="task__inner">
                         <div className="task__date">{this.props.task.date}</div>
